@@ -26,12 +26,12 @@
     .hero-slide{width:20%;height:100%;display:flex;align-items:center;justify-content:center;background-size:100% 100%;}
     .hero-slide.active{animation:zoomBg 30s ease-in-out infinite;}
 
-    /* RUTAS DE IMÁGENES POR DEFECTO */
-    .slide-1{background-image:url('imagenes/Portada.jpg');}
-    .slide-2{background-image:url('imagenes/limpiezaMuebles.jpg');}
-    .slide-3{background-image:url('imagenes/Promocion.jpg');}
-    .slide-4{background-image:url('imagenes/Sofalisto.jpg');}
-    .slide-5{background-image:url('imagenes/producto_fondo.jpg');}
+    /* RUTAS DE IMÁGENES POR DEFECTO - CORREGIDAS PARA VERCEL */
+    .slide-1{background-image:url('/imagenes/Portada.jpg');}
+    .slide-2{background-image:url('/imagenes/limpiezaMuebles.jpg');}
+    .slide-3{background-image:url('/imagenes/Promocion.jpg');}
+    .slide-4{background-image:url('/imagenes/Sofalisto.jpg');}
+    .slide-5{background-image:url('/imagenes/producto_fondo.jpg');}
 
     @keyframes zoomBg{
       0%{background-size:100% 100%;}
@@ -40,7 +40,6 @@
     }
 
     /* ===== ANIMACIONES MEJORADAS ===== */
-    /* SLIDE 1: Animaciones específicas */
     .slide-1 .main-title{transform:translateY(-100px);opacity:0;}
     .slide-1.active .main-title{animation:dropDown 1s both .2s;}
     
@@ -487,7 +486,7 @@
     .vacuum{
       width: 100px;
       height: 100px;
-      background-image: url('imagenes/producto_cuadrada_51010.jpeg');
+      background-image: url('/imagenes/producto_cuadrada_51010.jpeg');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -610,7 +609,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0); /* Fondo oscuro semi-transparente */
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
         z-index: 1;
     }
     
@@ -655,7 +654,7 @@
         left: 50%;
         width: 300px;
         height: 300px;
-        background-image: url('imagenes/Logo Be Rabbit FInal.png');
+        background-image: url('/imagenes/Logo Be Rabbit FInal.png');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
@@ -1070,7 +1069,7 @@
 <header>
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
     <a href="#hero">
-      <img src="imagenes/Logo Be Rabbit FInal.png" alt="Logo" id="logo">
+      <img src="/imagenes/Logo Be Rabbit FInal.png" alt="Logo" id="logo">
     </a>
     <div class="action-buttons">
       <button class="action-btn reset-btn" id="reset-btn">Borrar listas</button>
@@ -1135,7 +1134,7 @@
         <div class="slide-content">
           <div class="video-box">
             <video class="hero-video" controls autoplay muted>
-              <source src="videos/short.mp4" type="video/mp4">
+              <source src="/videos/short.mp4" type="video/mp4">
               Tu navegador no soporta video.
             </video>
           </div>
@@ -1174,19 +1173,19 @@
       <p class="section-text">Descubre cómo podemos ayudarte a mantener tus muebles y espacios limpios y frescos.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/combo.jpg" alt="Servicio destacado 1" class="editable-img" data-key="rect1">
+          <img src="/imagenes/combo.jpg" alt="Servicio destacado 1" class="editable-img" data-key="rect1">
           <button class="image-btn update-img-btn" data-target="rect1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/combo2.jpg" alt="Servicio destacado 2" class="editable-img" data-key="rect2">
+          <img src="/imagenes/combo2.jpg" alt="Servicio destacado 2" class="editable-img" data-key="rect2">
           <button class="image-btn update-img-btn" data-target="rect2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/combolimpiapisosymuebles.png" alt="Servicio destacado 3" class="editable-img" data-key="rect3">
+          <img src="/imagenes/combolimpiapisosymuebles.png" alt="Servicio destacado 3" class="editable-img" data-key="rect3">
           <button class="image-btn update-img-btn" data-target="rect3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/incienso-limpia-casa_922109_37260496.jpg" alt="Servicio destacado 4" class="editable-img" data-key="rect4">
+          <img src="/imagenes/incienso-limpia-casa_922109_37260496.jpg" alt="Servicio destacado 4" class="editable-img" data-key="rect4">
           <button class="image-btn update-img-btn" data-target="rect4">Actualizar</button>
         </div>
       </div>
@@ -1194,327 +1193,300 @@
   </section>
 
   <!-- Secciones con fondo de imagen y diseño unificado -->
-  <section id="service-events" class="service-background-section" style="background-image:url('imagenes/Portada1.jpeg');">
+  <section id="service-events" class="service-background-section" style="background-image:url('/imagenes/Portada1.jpeg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Muebles</h2>
       <p class="section-text">Revitalizamos tus muebles con técnicas profesionales que eliminan manchas, ácaros y malos olores, devolviéndoles su aspecto original.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/combo2.jpg" alt="Evento social" class="editable-img" data-key="event1">
+          <img src="/imagenes/combo2.jpg" alt="Evento social" class="editable-img" data-key="event1">
           <button class="image-btn update-img-btn" data-target="event1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Velas-Aroma.jpg" alt="Evento corporativo" class="editable-img" data-key="event2">
+          <img src="/imagenes/Velas-Aroma.jpg" alt="Evento corporativo" class="editable-img" data-key="event2">
           <button class="image-btn update-img-btn" data-target="event2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/precio.jpg" alt="Celebración especial" class="editable-img" data-key="event3">
+          <img src="/imagenes/precio.jpg" alt="Celebración especial" class="editable-img" data-key="event3">
           <button class="image-btn update-img-btn" data-target="event3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/promo4.jpg" alt="Detalle de evento" class="editable-img" data-key="event4">
+          <img src="/imagenes/promo4.jpg" alt="Detalle de evento" class="editable-img" data-key="event4">
           <button class="image-btn update-img-btn" data-target="event4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="service-portrait" class="service-background-section" style="background-image:url('imagenes/section1.jpg');">
+  <section id="service-portrait" class="service-background-section" style="background-image:url('/imagenes/section1.jpg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Colchones</h2>
       <p class="section-text">Eliminamos ácaros, manchas y olores de tus colchones, garantizando un sueño más saludable y confortable.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/section1111.jpg" alt="Retrato individual" class="editable-img" data-key="retrato1">
+          <img src="/imagenes/section1111.jpg" alt="Retrato individual" class="editable-img" data-key="retrato1">
           <button class="image-btn update-img-btn" data-target="retrato1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/section1222.jpg" alt="Retrato familiar" class="editable-img" data-key="retrato2">
+          <img src="/imagenes/section1222.jpg" alt="Retrato familiar" class="editable-img" data-key="retrato2">
           <button class="image-btn update-img-btn" data-target="retrato2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/section1223.jpg" alt="Retrato profesional" class="editable-img" data-key="retrato3">
+          <img src="/imagenes/section1223.jpg" alt="Retrato profesional" class="editable-img" data-key="retrato3">
           <button class="image-btn update-img-btn" data-target="retrato3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/section11111.jpg" alt="Retrato artístico" class="editable-img" data-key="retrato4">
+          <img src="/imagenes/section11111.jpg" alt="Retrato artístico" class="editable-img" data-key="retrato4">
           <button class="image-btn update-img-btn" data-target="retrato4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="service-product" class="service-background-section" style="background-image:url('imagenes/section11.jpg');">
+  <section id="service-product" class="service-background-section" style="background-image:url('/imagenes/section11.jpg');">
     <div class="container">
       <h2 class="section-title">Productos de Limpieza</h2>
       <p class="section-text">Ofrecemos productos especializados para el cuidado y mantenimiento de tus muebles y espacios, con fórmulas efectivas y seguras.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/Cremamedicinal1.jpg" alt="Producto para e-commerce" class="editable-img" data-key="product1">
+          <img src="/imagenes/Cremamedicinal1.jpg" alt="Producto para e-commerce" class="editable-img" data-key="product1">
           <button class="image-btn update-img-btn" data-target="product1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/producto_cuadrada_22.jpeg" alt="Producto en detalle" class="editable-img" data-key="product2">
+          <img src="/imagenes/producto_cuadrada_22.jpeg" alt="Producto en detalle" class="editable-img" data-key="product2">
           <button class="image-btn update-img-btn" data-target="product2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/producto_cuadrada_33.jpeg" alt="Producto para catálogo" class="editable-img" data-key="product3">
+          <img src="/imagenes/producto_cuadrada_33.jpeg" alt="Producto para catálogo" class="editable-img" data-key="product3">
           <button class="image-btn update-img-btn" data-target="product3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/producto_cuadrada_44.jpeg" alt="Producto publicitario" class="editable-img" data-key="product4">
+          <img src="/imagenes/producto_cuadrada_44.jpeg" alt="Producto publicitario" class="editable-img" data-key="product4">
           <button class="image-btn update-img-btn" data-target="product4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="secondary-content" class="section-padding text-center bg-white">
-    <div class="container">
-      <h2 class="section-title">Explora Nuestros Servicios</h2>
-      <p class="section-text">Descubre cómo podemos ayudarte a mantener tus muebles y espacios limpios y frescos.</p>
-      <div class="rectangular-images-grid">
-        <div class="image-container">
-          <img src="imagenes/combo.jpg" alt="Servicio destacado 1" class="editable-img" data-key="rect1">
-          <button class="image-btn update-img-btn" data-target="rect1">Actualizar</button>
-        </div>
-        <div class="image-container">
-          <img src="imagenes/combo2.jpg" alt="Servicio destacado 2" class="editable-img" data-key="rect2">
-          <button class="image-btn update-img-btn" data-target="rect2">Actualizar</button>
-        </div>
-        <div class="image-container">
-          <img src="imagenes/combolimpiapisosymuebles.png" alt="Servicio destacado 3" class="editable-img" data-key="rect3">
-          <button class="image-btn update-img-btn" data-target="rect3">Actualizar</button>
-        </div>
-        <div class="image-container">
-          <img src="imagenes/incienso-limpia-casa_922109_37260496.jpg" alt="Servicio destacado 4" class="editable-img" data-key="rect4">
-          <button class="image-btn update-img-btn" data-target="rect4">Actualizar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Secciones para cada servicio del Slide 2 -->
-  <section id="sillas-comedor" class="service-background-section" style="background-image:url('imagenes/sofaback.jpg');">
+  <section id="sillas-comedor" class="service-background-section" style="background-image:url('/imagenes/sofaback.jpg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Sillas de Comedor</h2>
       <p class="section-text">Revitalizamos tus sillas de comedor con técnicas profesionales que eliminan manchas, ácaros y malos olores, devolviéndoles su aspecto original.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/SofaSucio.jpeg" alt="Silla de comedor 1" class="editable-img" data-key="silla1">
+          <img src="/imagenes/SofaSucio.jpeg" alt="Silla de comedor 1" class="editable-img" data-key="silla1">
           <button class="image-btn update-img-btn" data-target="silla1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/section1111.jpg" alt="Silla de comedor 2" class="editable-img" data-key="silla2">
+          <img src="/imagenes/section1111.jpg" alt="Silla de comedor 2" class="editable-img" data-key="silla2">
           <button class="image-btn update-img-btn" data-target="silla2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/section1222.jpg" alt="Silla de comedor 3" class="editable-img" data-key="silla3">
+          <img src="/imagenes/section1222.jpg" alt="Silla de comedor 3" class="editable-img" data-key="silla3">
           <button class="image-btn update-img-btn" data-target="silla3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/section122.jpg" alt="Silla de comedor 4" class="editable-img" data-key="silla4">
+          <img src="/imagenes/section122.jpg" alt="Silla de comedor 4" class="editable-img" data-key="silla4">
           <button class="image-btn update-img-btn" data-target="silla4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="colchones" class="service-background-section" style="background-image:url('imagenes/colchonback.jpg');">
+  <section id="colchones" class="service-background-section" style="background-image:url('/imagenes/colchonback.jpg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Colchones</h2>
       <p class="section-text">Eliminamos ácaros, manchas y olores de tus colchones, garantizando un sueño más saludable y confortable.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/section1121111.jpg" alt="Colchón 1" class="editable-img" data-key="colchon1">
+          <img src="/imagenes/section1121111.jpg" alt="Colchón 1" class="editable-img" data-key="colchon1">
           <button class="image-btn update-img-btn" data-target="colchon1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/colchon11.jpg" alt="Colchón 2" class="editable-img" data-key="colchon2">
+          <img src="/imagenes/colchon11.jpg" alt="Colchón 2" class="editable-img" data-key="colchon2">
           <button class="image-btn update-img-btn" data-target="colchon2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/colchon21.jpg" alt="Colchón 3" class="editable-img" data-key="colchon3">
+          <img src="/imagenes/colchon21.jpg" alt="Colchón 3" class="editable-img" data-key="colchon3">
           <button class="image-btn update-img-btn" data-target="colchon3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/cochon4.jpg" alt="Colchón 4" class="editable-img" data-key="colchon4">
+          <img src="/imagenes/cochon4.jpg" alt="Colchón 4" class="editable-img" data-key="colchon4">
           <button class="image-btn update-img-btn" data-target="colchon4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="sofa-camas" class="service-background-section" style="background-image:url('imagenes/porback.jpg');">
+  <section id="sofa-camas" class="service-background-section" style="background-image:url('/imagenes/porback.jpg');">
     <div class="container">
-      <h2 class="section-title">Limpieza de Sofás </h2>
+      <h2 class="section-title">Limpieza de Sofás</h2>
       <p class="section-text">Limpieza profunda de sofá-camas para eliminar manchas, ácaros y olores, garantizando comodidad e higiene.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/sofacam.jpg" alt="Sofá-cama 1" class="editable-img" data-key="sofa-cama1">
+          <img src="/imagenes/sofacam.jpg" alt="Sofá-cama 1" class="editable-img" data-key="sofa-cama1">
           <button class="image-btn update-img-btn" data-target="sofa-cama1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/SofaLimpio.jpeg" alt="Sofá-cama 2" class="editable-img" data-key="sofa-cama2">
+          <img src="/imagenes/SofaLimpio.jpeg" alt="Sofá-cama 2" class="editable-img" data-key="sofa-cama2">
           <button class="image-btn update-img-btn" data-target="sofa-cama2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/sofacam2.jpg" alt="Sofá-cama 3" class="editable-img" data-key="sofa-cama3">
+          <img src="/imagenes/sofacam2.jpg" alt="Sofá-cama 3" class="editable-img" data-key="sofa-cama3">
           <button class="image-btn update-img-btn" data-target="sofa-cama3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/sofacam4.jpg" alt="Sofá-cama 4" class="editable-img" data-key="sofa-cama4">
+          <img src="/imagenes/sofacam4.jpg" alt="Sofá-cama 4" class="editable-img" data-key="sofa-cama4">
           <button class="image-btn update-img-btn" data-target="sofa-cama4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="salas-sofas" class="service-background-section" style="background-image:url('imagenes/oferta5.jpg');">
+  <section id="salas-sofas" class="service-background-section" style="background-image:url('/imagenes/oferta5.jpg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Salas y Sofás</h2>
       <p class="section-text">Revitalizamos tus salas y sofás con técnicas profesionales que eliminan manchas, ácaros y malos olores.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/limpieza4.jpg" alt="Sala 1" class="editable-img" data-key="sala1">
+          <img src="/imagenes/limpieza4.jpg" alt="Sala 1" class="editable-img" data-key="sala1">
           <button class="image-btn update-img-btn" data-target="sala1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/limpiezasalas.jpg" alt="Sala 2" class="editable-img" data-key="sala2">
+          <img src="/imagenes/limpiezasalas.jpg" alt="Sala 2" class="editable-img" data-key="sala2">
           <button class="image-btn update-img-btn" data-target="sala2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/limpieza3.jpg" alt="Sala 3" class="editable-img" data-key="sala3">
+          <img src="/imagenes/limpieza3.jpg" alt="Sala 3" class="editable-img" data-key="sala3">
           <button class="image-btn update-img-btn" data-target="sala3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/limpieza2.jpg" alt="Sala 4" class="editable-img" data-key="sala4">
+          <img src="/imagenes/limpieza2.jpg" alt="Sala 4" class="editable-img" data-key="sala4">
           <button class="image-btn update-img-btn" data-target="sala4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="cojineria-carros" class="service-background-section" style="background-image:url('imagenes/backcama.jpg');">
+  <section id="cojineria-carros" class="service-background-section" style="background-image:url('/imagenes/backcama.jpg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Cojinería de Carros</h2>
       <p class="section-text">Limpieza profunda de asientos y cojinería de vehículos para eliminar manchas, olores y ácaros.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/Limpiezacarros1.jpg" alt="Cojinería 1" class="editable-img" data-key="cojineria1">
+          <img src="/imagenes/Limpiezacarros1.jpg" alt="Cojinería 1" class="editable-img" data-key="cojineria1">
           <button class="image-btn update-img-btn" data-target="cojineria1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/limpiezacarro2.jpg" alt="Cojinería 2" class="editable-img" data-key="cojineria2">
+          <img src="/imagenes/limpiezacarro2.jpg" alt="Cojinería 2" class="editable-img" data-key="cojineria2">
           <button class="image-btn update-img-btn" data-target="cojineria2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Limpiezacarro3.jpg" alt="Cojinería 3" class="editable-img" data-key="cojineria3">
+          <img src="/imagenes/Limpiezacarro3.jpg" alt="Cojinería 3" class="editable-img" data-key="cojineria3">
           <button class="image-btn update-img-btn" data-target="cojineria3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Limpiezacarro4.jpeg" alt="Cojinería 4" class="editable-img" data-key="cojineria4">
+          <img src="/imagenes/Limpiezacarro4.jpeg" alt="Cojinería 4" class="editable-img" data-key="cojineria4">
           <button class="image-btn update-img-btn" data-target="cojineria4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="cortinas" class="service-background-section" style="background-image:url('imagenes/backcama.jpg');">
+  <section id="cortinas" class="service-background-section" style="background-image:url('/imagenes/backcama.jpg');">
     <div class="container">
       <h2 class="section-title">Limpieza de Cortinas</h2>
       <p class="section-text">Limpieza profesional de cortinas para eliminar polvo, ácaros y manchas, devolviéndoles su frescura y brillo.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/Limpiezacortinas1.jpg" alt="Cortina 1" class="editable-img" data-key="cortina1">
+          <img src="/imagenes/Limpiezacortinas1.jpg" alt="Cortina 1" class="editable-img" data-key="cortina1">
           <button class="image-btn update-img-btn" data-target="cortina1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Limpiezacortinasgeneral.jpg" alt="Cortina 2" class="editable-img" data-key="cortina2">
+          <img src="/imagenes/Limpiezacortinasgeneral.jpg" alt="Cortina 2" class="editable-img" data-key="cortina2">
           <button class="image-btn update-img-btn" data-target="cortina2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Limpiezacortinas1.jpg" alt="Cortina 3" class="editable-img" data-key="cortina3">
+          <img src="/imagenes/Limpiezacortinas1.jpg" alt="Cortina 3" class="editable-img" data-key="cortina3">
           <button class="image-btn update-img-btn" data-target="cortina3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Limpiezacortinas2.jpg" alt="Cortina 4" class="editable-img" data-key="cortina4">
+          <img src="/imagenes/Limpiezacortinas2.jpg" alt="Cortina 4" class="editable-img" data-key="cortina4">
           <button class="image-btn update-img-btn" data-target="cortina4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="productos-limpieza" class="service-background-section" style="background-image:url('imagenes/jabon4oferta.jpg');">
+  <section id="productos-limpieza" class="service-background-section" style="background-image:url('/imagenes/jabon4oferta.jpg');">
     <div class="container">
       <h2 class="section-title">Productos de Limpieza y Aromatizantes</h2>
       <p class="section-text">Ofrecemos productos especializados para el cuidado y mantenimiento de tus muebles y espacios, con fórmulas efectivas y seguras.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/jabones1.jpg" alt="Producto 1" class="editable-img" data-key="producto1">
+          <img src="/imagenes/jabones1.jpg" alt="Producto 1" class="editable-img" data-key="producto1">
           <button class="image-btn update-img-btn" data-target="producto1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/jabones2.jpg" alt="Producto 2" class="editable-img" data-key="producto2">
+          <img src="/imagenes/jabones2.jpg" alt="Producto 2" class="editable-img" data-key="producto2">
           <button class="image-btn update-img-btn" data-target="producto2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/jabones3.jpg" alt="Producto 3" class="editable-img" data-key="producto3">
+          <img src="/imagenes/jabones3.jpg" alt="Producto 3" class="editable-img" data-key="producto3">
           <button class="image-btn update-img-btn" data-target="producto3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/jabonoferta3.jpg" alt="Producto 4" class="editable-img" data-key="producto4">
+          <img src="/imagenes/jabonoferta3.jpg" alt="Producto 4" class="editable-img" data-key="producto4">
           <button class="image-btn update-img-btn" data-target="producto4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Secciones adicionales -->
-  <section id="venta-productos-aseo" class="service-background-section" style="background-image:url('imagenes/backcama.jpg');">
+  <section id="venta-productos-aseo" class="service-background-section" style="background-image:url('/imagenes/backcama.jpg');">
     <div class="container">
       <h2 class="section-title">Venta de Productos de Aseo</h2>
       <p class="section-text">Ofrecemos una amplia gama de productos de limpieza y aseo para el hogar, con la mejor calidad y precios competitivos.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/jabonofeta5.jpg" alt="Producto aseo 1" class="editable-img" data-key="aseo1">
+          <img src="/imagenes/jabonofeta5.jpg" alt="Producto aseo 1" class="editable-img" data-key="aseo1">
           <button class="image-btn update-img-btn" data-target="aseo1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/jabonvelaoferta.jpg" alt="Producto aseo 2" class="editable-img" data-key="aseo2">
+          <img src="/imagenes/jabonvelaoferta.jpg" alt="Producto aseo 2" class="editable-img" data-key="aseo2">
           <button class="image-btn update-img-btn" data-target="aseo2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/kitdlimpiezapisosropa.png" alt="Producto aseo 3" class="editable-img" data-key="aseo3">
+          <img src="/imagenes/kitdlimpiezapisosropa.png" alt="Producto aseo 3" class="editable-img" data-key="aseo3">
           <button class="image-btn update-img-btn" data-target="aseo3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Ofertavelas1.jpg" alt="Producto aseo 4" class="editable-img" data-key="aseo4">
+          <img src="/imagenes/Ofertavelas1.jpg" alt="Producto aseo 4" class="editable-img" data-key="aseo4">
           <button class="image-btn update-img-btn" data-target="aseo4">Actualizar</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="eventos" class="service-background-section" style="background-image:url('imagenes/backcama.jpg');">
+  <section id="eventos" class="service-background-section" style="background-image:url('/imagenes/backcama.jpg');">
     <div class="container">
       <h2 class="section-title">Servicios para Eventos</h2>
       <p class="section-text">Ofrecemos servicios especializados de limpieza para eventos, garantizando espacios impecables para tus celebraciones.</p>
       <div class="rectangular-images-grid">
         <div class="image-container">
-          <img src="imagenes/cama1.jpg" alt="Evento 1" class="editable-img" data-key="evento1">
+          <img src="/imagenes/cama1.jpg" alt="Evento 1" class="editable-img" data-key="evento1">
           <button class="image-btn update-img-btn" data-target="evento1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/cama2.jpg" alt="Evento 2" class="editable-img" data-key="evento2">
+          <img src="/imagenes/cama2.jpg" alt="Evento 2" class="editable-img" data-key="evento2">
           <button class="image-btn update-img-btn" data-target="evento2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/cAMA3.jpg" alt="Evento 3" class="editable-img" data-key="evento3">
+          <img src="/imagenes/cAMA3.jpg" alt="Evento 3" class="editable-img" data-key="evento3">
           <button class="image-btn update-img-btn" data-target="evento3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/CAMA4.jpg" alt="Evento 4" class="editable-img" data-key="evento4">
+          <img src="/imagenes/CAMA4.jpg" alt="Evento 4" class="editable-img" data-key="evento4">
           <button class="image-btn update-img-btn" data-target="evento4">Actualizar</button>
         </div>
       </div>
@@ -1527,27 +1499,27 @@
       <p class="section-text">Aquí puedes ver una muestra de nuestro trabajo.</p>
       <div class="gallery-grid">
         <div class="image-container">
-          <img src="imagenes/OfertaOctubre.jpg" alt="Foto de Galería 1" class="editable-img" data-key="gallery1">
+          <img src="/imagenes/OfertaOctubre.jpg" alt="Foto de Galería 1" class="editable-img" data-key="gallery1">
           <button class="image-btn update-img-btn" data-target="gallery1">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/producto_cuadrada_269.jpeg" alt="Foto de Galería 2" class="editable-img" data-key="gallery2">
+          <img src="/imagenes/producto_cuadrada_269.jpeg" alt="Foto de Galería 2" class="editable-img" data-key="gallery2">
           <button class="image-btn update-img-btn" data-target="gallery2">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/Velas-Aroma.jpg" alt="Foto de Galería 3" class="editable-img" data-key="gallery3">
+          <img src="/imagenes/Velas-Aroma.jpg" alt="Foto de Galería 3" class="editable-img" data-key="gallery3">
           <button class="image-btn update-img-btn" data-target="gallery3">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/kidlimñlimpiamuebles.jpg" alt="Foto de Galería 4" class="editable-img" data-key="gallery4">
+          <img src="/imagenes/kidlimñlimpiamuebles.jpg" alt="Foto de Galería 4" class="editable-img" data-key="gallery4">
           <button class="image-btn update-img-btn" data-target="gallery4">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/ofertapisosuavizantesilicona.webp" alt="Foto de Galería 5" class="editable-img" data-key="gallery5">
+          <img src="/imagenes/ofertapisosuavizantesilicona.webp" alt="Foto de Galería 5" class="editable-img" data-key="gallery5">
           <button class="image-btn update-img-btn" data-target="gallery5">Actualizar</button>
         </div>
         <div class="image-container">
-          <img src="imagenes/polvodeincienciocombo.avif" alt="Foto de Galería 6" class="editable-img" data-key="gallery6">
+          <img src="/imagenes/polvodeincienciocombo.avif" alt="Foto de Galería 6" class="editable-img" data-key="gallery6">
           <button class="image-btn update-img-btn" data-target="gallery6">Actualizar</button>
         </div>
       </div>
@@ -1560,7 +1532,7 @@
       <h2 class="section-title">Contáctanos</h2>
       <p class="section-text">¿Necesitas nuestros servicios de limpieza o más información? ¡Escríbenos!</p>
       <div class="logo-editor">
-        <img id="contact-logo" src="imagenes/Logo Be Rabbit FInal.png" alt="Logo de contacto" class="logo-preview">
+        <img id="contact-logo" src="/imagenes/Logo Be Rabbit FInal.png" alt="Logo de contacto" class="logo-preview">
         <button class="action-btn" id="update-logo-btn">Actualizar Logo</button>
       </div>
       <form id="contact-form" action="#" method="POST">
@@ -1834,80 +1806,41 @@
     imageCaption.textContent = img.alt || 'Imagen';
   }
 
-  /* ===== DETECCIÓN DE SUBDOMINIOS Y REDIRECCIÓN ===== */
-  function handleSubdomainRouting() {
-    const hostname = window.location.hostname;
-    
-    // Si no es localhost y tiene subdominio, redirigir
-    if (!hostname.includes('localhost') && hostname.includes('.') && hostname.split('.').length > 2) {
-      const subdomain = hostname.split('.')[0];
-      
-      console.log('Subdominio detectado:', subdomain);
-      
-      // Pequeño delay para asegurar que la página esté cargada
-      setTimeout(() => {
-        switch(subdomain) {
-          case 'servicios':
-            window.location.hash = '#secondary-content';
-            break;
-          case 'muebles':
-            window.location.hash = '#service-events';
-            break;
-          case 'colchones':
-            window.location.hash = '#service-portrait';
-            break;
-          case 'productos':
-            window.location.hash = '#service-product';
-            break;
-          case 'galeria':
-            window.location.hash = '#gallery';
-            break;
-          case 'contacto':
-            window.location.hash = '#contact';
-            break;
-          default:
-            // Si es el dominio principal, no hacer nada
-            break;
-        }
-      }, 500);
-    }
-  }
-
-  /* ===== PRODUCTOS DEL E-COMMERCE ===== */
+  /* ===== PRODUCTOS DEL E-COMMERCE CON RUTAS CORREGIDAS ===== */
   const products = [
     {
       id: 1,
       name: "Paquete de Limpieza",
       price: 250000,
-      image: "imagenes/producto_cuadrada_133.jpeg",
+      image: "/imagenes/producto_cuadrada_133.jpeg",
       description: "Nuestro paquete completo de limpieza incluye productos especializados para todo tipo de muebles, tapicería y colchones. Elimina manchas, ácaros y malos olores de manera efectiva y segura."
     },
     {
       id: 2,
       name: "Aromatizante Ambiental",
       price: 180000,
-      image: "imagenes/producto_cuadrada_269.jpeg",
+      image: "/imagenes/producto_cuadrada_269.jpeg",
       description: "Aromatizante de larga duración con fragancia fresca que mantiene tus espacios con un agradable aroma por semanas. Ideal para hogares, oficinas y vehículos."
     },
     {
       id: 3,
       name: "Detergente Concentrado",
       price: 32000,
-      image: "imagenes/producto_cuadrada_344.jpeg",
+      image: "/imagenes/producto_cuadrada_344.jpeg",
       description: "Detergente concentrado de alta eficacia para ropa de todo tipo. Elimina manchas difíciles mientras cuida las fibras y colores de tus prendas."
     },
     {
       id: 4,
       name: "Desinfectante Profesional",
       price: 28000,
-      image: "imagenes/producto_cuadrada_488.jpeg",
+      image: "/imagenes/producto_cuadrada_488.jpeg",
       description: "Desinfectante de grado profesional para espacios. Elimina el 99.9% de bacterias y virus, ideal para baños, cocinas y áreas de alto tráfico."
     },
     {
       id: 5,
       name: "Limpiador de Vidrios",
       price: 22000,
-      image: "imagenes/producto_cuadrada_51010.jpeg",
+      image: "/imagenes/producto_cuadrada_51010.jpeg",
       description: "Fórmula especial que deja tus vidrios y espejos brillantes sin manchas. No deja residuos y evita la acumulación de polvo."
     }
   ];
@@ -2091,13 +2024,9 @@
     setTimeout(() => {
       // En un entorno real, aquí se integraría con la API de Bolt
       const total = currentProduct.price * currentQuantity;
-      const nequiNumber = "3127439018";
       
       // Simular redirección a Bolt
       const boltUrl = `https://bolt.com/payment?amount=${total}&phone=${phone}&email=${encodeURIComponent(email)}`;
-      
-      // En un entorno real, se redirigiría a Bolt
-      // window.location.href = boltUrl;
       
       // Por ahora, simulamos el proceso
       simulateBoltPayment(phone, email, total);
@@ -2179,12 +2108,6 @@
     
     console.log("Correo enviado al administrador: davidnoamorales@gmail.com");
     console.log(adminEmailContent);
-    
-    // En un entorno real, usaríamos un servicio como SendGrid o EmailJS
-    // Para implementación real, necesitarías:
-    // 1. Una cuenta en servicio de envío de correos (SendGrid, Mailgun, etc.)
-    // 2. Configurar las credenciales API
-    // 3. Implementar la lógica de envío
   }
 
   function sendWhatsAppConfirmation(phone, total) {
@@ -2209,83 +2132,51 @@
     return emailRegex.test(email);
   }
 
-  /* ===== FUNCIONES DEL FORMULARIO DE CONTACTO ===== */
-  function sendContactInfo() {
+  /* ===== FUNCIONES DEL FORMULARIO DE CONTACTO OPTIMIZADAS ===== */
+  async function sendContactInfo() {
     const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
+    const userPhone = document.getElementById('phone').value; // Número del CLIENTE
+    const userEmail = document.getElementById('email').value; // Email del CLIENTE
     const message = document.getElementById('message').value;
 
-    if (!name || !phone || !email || !message) {
+    if (!name || !userPhone || !userEmail || !message) {
       alert('Por favor complete todos los campos');
       return;
     }
 
-    if (!validatePhone(phone)) {
+    // Validaciones
+    if (!validatePhone(userPhone)) {
       alert('Por favor ingrese un número de teléfono válido (10 dígitos)');
       return;
     }
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(userEmail)) {
       alert('Por favor ingrese un correo electrónico válido');
       return;
     }
 
-    // Enviar correo de bienvenida
-    sendWelcomeEmail(name, email, phone);
-    
-    // Enviar mensaje de WhatsApp
-    sendWelcomeWhatsApp(phone, name);
-    
-    // En un entorno real, también podrías enviar un SMS aquí
-    
-    alert('¡Gracias por contactarnos! Te hemos enviado información sobre nuestros servicios y ofertas.');
-    
-    // Limpiar formulario
-    document.getElementById('contact-form').reset();
+    try {
+      // Envío simultáneo optimizado
+      await Promise.all([
+        sendWelcomeEmail(name, userEmail, userPhone),
+        sendWelcomeWhatsApp(userPhone, name),
+        sendAdminNotification(name, userPhone, userEmail, message)
+      ]);
+
+      alert('¡Gracias por contactarnos! Te hemos enviado información a tu correo y WhatsApp.');
+      
+      // Limpiar formulario
+      document.getElementById('contact-form').reset();
+      
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al enviar la información. Por favor contáctanos directamente por WhatsApp.');
+    }
   }
 
-  function sendWelcomeEmail(name, email, phone) {
-    // En un entorno real, aquí se enviaría un correo con imágenes y ofertas
-    // Por ahora, simulamos el envío
-    
-    const emailContent = `
-      Asunto: ¡Bienvenido a Ariel Clean! - Ofertas Especiales
-      
-      Hola ${name},
-      
-      ¡Gracias por contactarnos!
-      
-      En Ariel Clean nos especializamos en servicios profesionales de limpieza:
-      - Lavado de muebles y colchones
-      - Limpieza de tapicería
-      - Productos de limpieza especializados
-      
-      OFERTAS ESPECIALES PARA TI:
-      🔹 10% de descuento en tu primer servicio
-      🔹 Paquete completo de limpieza por solo $500,000
-      🔹 Productos de limpieza con entrega gratuita
-      
-      Visita nuestro sitio web: [URL de tu página]
-      
-      Contáctanos:
-      📞 ${phone}
-      ✉️ ${email}
-      
-      ¡Estamos para servirte!
-      
-      Atentamente,
-      Equipo Ariel Clean
-    `;
-    
-    console.log("Correo de bienvenida enviado a:", email);
-    console.log(emailContent);
-    
-    // En un entorno real, implementarías el envío real de correo aquí
-  }
-
-  function sendWelcomeWhatsApp(phone, name) {
-    const message = `¡Hola ${name}! 👋 
+  // Función CORREGIDA para enviar WhatsApp al CLIENTE (no a tu número)
+  async function sendWelcomeWhatsApp(userPhone, userName) {
+    const message = `¡Hola ${userName}! 👋 
 
 Gracias por contactar a *Ariel Clean* 🧼✨
 
@@ -2301,10 +2192,130 @@ Te ofrecemos:
 
 ¿En qué podemos ayudarte? 😊`;
 
-    const encodedMessage = encodeURIComponent(message);
+    // CORRECCIÓN: Enviar al número del CLIENTE, no al tuyo
+    const whatsappUrl = `https://wa.me/57${userPhone}?text=${encodeURIComponent(message)}`;
     
-    // Abrir WhatsApp con el mensaje predefinido
-    window.open(`https://wa.me/573127439018?text=${encodedMessage}`, '_blank');
+    // Abrir WhatsApp con el número del cliente
+    window.open(whatsappUrl, '_blank');
+
+    // Opcional: También enviar notificación a tu número de admin
+    const adminMessage = `📞 Nuevo contacto: ${userName} - ${userPhone}`;
+    const adminWhatsappUrl = `https://wa.me/573127439018?text=${encodeURIComponent(adminMessage)}`;
+    
+    // Abrir en nueva pestaña para no interferir con el mensaje al cliente
+    setTimeout(() => {
+      window.open(adminWhatsappUrl, '_blank');
+    }, 1000);
+  }
+
+  // Función para enviar correo de bienvenida al CLIENTE
+  async function sendWelcomeEmail(name, userEmail, userPhone) {
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
+          .header { background: #4CAF50; color: white; padding: 20px; text-align: center; }
+          .content { padding: 20px; background: #f9f9f9; }
+          .offer { background: #fff; padding: 15px; margin: 15px 0; border-left: 4px solid #4CAF50; border-radius: 5px; }
+          .footer { background: #333; color: white; padding: 15px; text-align: center; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>¡Bienvenido a Ariel Clean!</h1>
+          <p>Servicios profesionales de limpieza</p>
+        </div>
+        <div class="content">
+          <h2>Hola ${name},</h2>
+          <p>Gracias por contactarnos. Estamos aquí para ayudarte con todos tus necesidades de limpieza.</p>
+          
+          <div class="offer">
+            <h3>🎉 Oferta Especial de Bienvenida</h3>
+            <p><strong>10% DE DESCUENTO</strong> en tu primer servicio</p>
+            <p>• Lavado de muebles y colchones</p>
+            <p>• Limpieza de tapicería</p>
+            <p>• Productos de limpieza especializados</p>
+          </div>
+          
+          <p><strong>Horario de atención:</strong> Lunes a Domingo 7am a 7pm</p>
+          <p><strong>Contacto:</strong> 📞 3127439018</p>
+          
+          <p>¡Esperamos poder servirte!</p>
+        </div>
+        <div class="footer">
+          <p>El equipo de <strong>Ariel Clean</strong></p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    // En producción, usarías tu API de envío de correos
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: userEmail,
+          subject: `¡Bienvenido ${name} - Ariel Clean!`,
+          html: htmlContent,
+          from: 'contacto@arielclean.com'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en el servidor de correo');
+      }
+      
+      console.log('Correo enviado exitosamente a:', userEmail);
+    } catch (error) {
+      console.error('Error enviando correo:', error);
+      // En caso de error, continuamos sin interrumpir el flujo
+    }
+  }
+
+  // Función para notificarte a ti como administrador
+  async function sendAdminNotification(name, phone, email, message) {
+    const adminContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; }
+          .alert { background: #ffebee; padding: 15px; border-left: 4px solid #f44336; }
+        </style>
+      </head>
+      <body>
+        <h2>📞 Nuevo Contacto - Ariel Clean</h2>
+        <div class="alert">
+          <p><strong>Nombre:</strong> ${name}</p>
+          <p><strong>Teléfono:</strong> ${phone}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Mensaje:</strong> ${message}</p>
+          <p><strong>Fecha:</strong> ${new Date().toLocaleString()}</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    try {
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'davidnoamorales@gmail.com', // Tu correo de administrador
+          subject: `Nuevo contacto: ${name}`,
+          html: adminContent
+        })
+      });
+    } catch (error) {
+      console.error('Error enviando notificación al admin:', error);
+    }
   }
 
   /* ===== MOSTRAR ANIMACIÓN DE PAGO EXITOSO ===== */
@@ -2515,15 +2526,15 @@ Te ofrecemos:
     showSlide(currentSlide);
   }
 
-  // Inicializar componentes
+  // Inicializar componentes cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', function() {
     initEcommerce();
     initRotatingBanner();
     initImageZoom(); // Inicializar el sistema de zoom de imágenes
-    handleSubdomainRouting(); // Manejar redirección por subdominios
     showSlide(0);
   });
 </script>
 
 </body>
 </html>
+
