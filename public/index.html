@@ -2676,13 +2676,46 @@
       return;
     }
 
-    // Enviar información al administrador
-    sendAdminNotification(name, phone, email, message);
+    // CORRECCIÓN: Enviar mensaje de WhatsApp al CLIENTE en lugar del administrador
+    const customerMessage = `Hola ${name}, gracias por contactar a Clean Factory - Blanca Escencia.\n\n` +
+                           `Hemos recibido tu solicitud:\n\n` +
+                           `📋 *Tu mensaje:*\n${message}\n\n` +
+                           `📧 *Tu email:* ${email}\n` +
+                           `📱 *Tu teléfono:* ${phone}\n\n` +
+                           `✨ *OFERTAS ESPECIALES PARA TI:*\n\n` +
+                           `✅ *Lavado de muebles:* 20% de descuento\n` +
+                           `✅ *Limpieza de colchones:* 25% de descuento\n` +
+                           `✅ *Productos de limpieza:* 15% de descuento\n` +
+                           `✅ *Paquete completo (3 servicios):* 30% de descuento\n\n` +
+                           `📞 *Contáctanos para más información:*\n` +
+                           `3102583224 - 3125366593\n\n` +
+                           `📍 Bogotá - Servicio a domicilio\n` +
+                           `⏰ Lunes a Domingo 7am a 7pm`;
+    
+    const encodedCustomerMessage = encodeURIComponent(customerMessage);
+    
+    // Abrir WhatsApp del CLIENTE (al número que él ingresó)
+    window.open(`https://wa.me/57${phone}?text=${encodedCustomerMessage}`, '_blank');
+    
+    // También enviar notificación al ADMINISTRADOR (opcional)
+    const adminMessage = `📢 NUEVO CONTACTO DESDE EL SITIO WEB:\n\n` +
+                        `👤 *Nombre:* ${name}\n` +
+                        `📱 *Teléfono:* ${phone}\n` +
+                        `📧 *Email:* ${email}\n` +
+                        `💬 *Mensaje:* ${message}\n\n` +
+                        `🕒 *Fecha:* ${new Date().toLocaleString()}`;
+    
+    const encodedAdminMessage = encodeURIComponent(adminMessage);
+    
+    // Abrir WhatsApp del ADMINISTRADOR en nueva pestaña
+    setTimeout(() => {
+      window.open(`https://wa.me/573102583224?text=${encodedAdminMessage}`, '_blank');
+    }, 1000);
     
     // Limpiar formulario
     document.getElementById('contact-form').reset();
     
-    alert('¡Información enviada con éxito! Pronto nos pondremos en contacto contigo.');
+    alert('¡Información enviada con éxito! Se abrirá WhatsApp con nuestras ofertas especiales.');
   }
 
   function validatePhone(phone) {
@@ -2693,15 +2726,6 @@
   function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  }
-
-  function sendAdminNotification(name, phone, email, message) {
-    // Este mensaje va al ADMINISTRADOR (573102583224)
-    const adminMessage = `Nuevo contacto desde el sitio web:\n\nNombre: ${name}\nTeléfono: ${phone}\nEmail: ${email}\nMensaje: ${message}`;
-    const encodedAdminMessage = encodeURIComponent(adminMessage);
-    
-    // Abrir WhatsApp del ADMINISTRADOR
-    window.open(`https://wa.me/573102583224?text=${encodedAdminMessage}`, '_blank');
   }
 </script>
 </body>
