@@ -736,6 +736,63 @@
       background: #8e24aa;
     }
 
+    /* ===== MODAL DE ÉXITO PARA WHATSAPP ===== */
+    .whatsapp-success-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .whatsapp-success-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      animation: slideInFromBottom 0.5s ease-out;
+    }
+
+    .whatsapp-success-icon {
+      font-size: 60px;
+      color: #25D366;
+      margin-bottom: 20px;
+    }
+
+    .whatsapp-success-title {
+      font-size: 1.5rem;
+      color: #25D366;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-success-message {
+      margin-bottom: 25px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .whatsapp-success-close {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-success-close:hover {
+      background: #1da851;
+    }
+
     /* Keyframes de animación */
     @keyframes dropDown{0%{transform:translateY(-100px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
     @keyframes slideInLeft{0%{transform:translateX(-100px);opacity:0;}100%{transform:translateX(0);opacity:1;}}
@@ -1980,6 +2037,16 @@
   </div>
 </div>
 
+<!-- ===== NUEVO MODAL DE ÉXITO PARA WHATSAPP ===== -->
+<div id="whatsappSuccessModal" class="whatsapp-success-modal">
+  <div class="whatsapp-success-content">
+    <div class="whatsapp-success-icon">✓</div>
+    <h2 class="whatsapp-success-title">¡Mensaje Enviado!</h2>
+    <p class="whatsapp-success-message">Tu mensaje ha sido enviado correctamente por WhatsApp. Pronto nos pondremos en contacto contigo.</p>
+    <button class="whatsapp-success-close" id="whatsapp-success-close">Aceptar</button>
+  </div>
+</div>
+
 <!-- ===== MODAL PARA AMPLIAR IMÁGENES ===== -->
 <div id="imageZoomModal" class="image-zoom-modal">
   <span class="image-zoom-close">&times;</span>
@@ -2016,6 +2083,10 @@
   
   let currentImageIndex = 0;
   let allImages = [];
+
+  /* ===== VARIABLES PARA MODAL DE WHATSAPP ===== */
+  const whatsappSuccessModal = document.getElementById('whatsappSuccessModal');
+  const whatsappSuccessClose = document.getElementById('whatsapp-success-close');
 
   /* ===== ARRAY DE 50 PRODUCTOS ===== */
   const allProducts = [];
@@ -2123,6 +2194,59 @@
     allProducts.push(productCopy);
   }
 
+  /* ===== FUNCIONES PARA COMPARTIR PRODUCTOS ===== */
+
+  // Función para generar URL única del producto
+  function getProductURL(productId) {
+    // Crear URL única para el producto
+    const baseURL = window.location.origin + window.location.pathname;
+    return `${baseURL}?product=${productId}`;
+  }
+
+  // Función para compartir producto
+  function shareProduct(productId) {
+    const productURL = getProductURL(productId);
+    
+    // Copiar al portapapeles
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(productURL).then(() => {
+        // Mostrar modal de éxito para compartir
+        document.getElementById('shareSuccessModal').style.display = 'flex';
+      }).catch(() => {
+        // Fallback: mostrar la URL
+        prompt('Copia este enlace para compartir el producto:', productURL);
+      });
+    } else {
+      // Fallback para navegadores antiguos
+      prompt('Copia este enlace para compartir el producto:', productURL);
+    }
+  }
+
+  // Función para inicializar URLs de productos
+  function initProductURLs() {
+    // Verificar si hay un producto en la URL al cargar la página
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    
+    if (productId) {
+      // Abrir el modal del producto automáticamente
+      setTimeout(() => {
+        openEnhancedProductModal(parseInt(productId));
+      }, 1000);
+    }
+  }
+
+  /* ===== NUEVA FUNCIÓN PARA MOSTRAR MODAL DE ÉXITO DE WHATSAPP ===== */
+  function showWhatsAppSuccess(message = "Tu mensaje ha sido enviado correctamente por WhatsApp. Pronto nos pondremos en contacto contigo.") {
+    if (whatsappSuccessModal) {
+      const messageElement = document.querySelector('.whatsapp-success-message');
+      if (messageElement) {
+        messageElement.textContent = message;
+      }
+      whatsappSuccessModal.style.display = 'flex';
+    }
+  }
+
   /* ===== FUNCIÓN PARA NAVEGACIÓN POR BOTONES ===== */
   function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
@@ -2147,8 +2271,6 @@
     allImages = Array.from(document.querySelectorAll(
       '.editable-img, .product-image, .rectangular-images-grid img, .gallery-grid img, .all-product-image'
     ));
-    
-    console.log('Imágenes encontradas para zoom:', allImages.length);
     
     // Agregar event listeners para doble clic
     allImages.forEach((img, index) => {
@@ -2248,6 +2370,10 @@
     const product = allProducts.find(p => p.id === productId);
     if (!product) return;
 
+    // Actualizar la URL del navegador con el producto
+    const newURL = getProductURL(productId);
+    window.history.pushState({}, '', newURL);
+
     const modal = document.getElementById('productModalEnhanced');
     const mainImage = document.getElementById('modal-main-image');
     const productName = document.getElementById('modal-product-name');
@@ -2269,37 +2395,37 @@
     // Especificaciones
     productSpecs.innerHTML = '';
     if (product.specifications) {
-        product.specifications.forEach(spec => {
-            const li = document.createElement('li');
-            li.textContent = spec;
-            productSpecs.appendChild(li);
-        });
+      product.specifications.forEach(spec => {
+        const li = document.createElement('li');
+        li.textContent = spec;
+        productSpecs.appendChild(li);
+      });
     }
 
     // Miniaturas
     thumbnailsContainer.innerHTML = '';
     product.images.forEach((imgSrc, index) => {
-        const thumbnail = document.createElement('img');
-        thumbnail.src = imgSrc;
-        thumbnail.className = `product-thumbnail ${index === 0 ? 'active' : ''}`;
-        thumbnail.alt = `Vista ${index + 1}`;
-        thumbnail.addEventListener('click', () => {
-            mainImage.src = imgSrc;
-            // Actualizar clase activa
-            document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
-            thumbnail.classList.add('active');
-        });
-        thumbnailsContainer.appendChild(thumbnail);
+      const thumbnail = document.createElement('img');
+      thumbnail.src = imgSrc;
+      thumbnail.className = `product-thumbnail ${index === 0 ? 'active' : ''}`;
+      thumbnail.alt = `Vista ${index + 1}`;
+      thumbnail.addEventListener('click', () => {
+        mainImage.src = imgSrc;
+        // Actualizar clase activa
+        document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+        thumbnail.classList.add('active');
+      });
+      thumbnailsContainer.appendChild(thumbnail);
     });
 
     // Inicializar cantidad y precio
     quantityInput.value = 1;
     
-    // Función para actualizar el precio total (definida en ámbito global)
+    // Función para actualizar el precio total
     function updateTotalPrice() {
-        const quantity = parseInt(quantityInput.value) || 1;
-        const total = product.price * quantity;
-        totalPrice.textContent = `$${total.toLocaleString()}`;
+      const quantity = parseInt(quantityInput.value) || 1;
+      const total = product.price * quantity;
+      totalPrice.textContent = `$${total.toLocaleString()}`;
     }
     
     updateTotalPrice(); // Llamar inicialmente
@@ -2335,78 +2461,76 @@
 
     // Cantidad - Disminuir
     newDecreaseBtn.addEventListener('click', () => {
-        const current = parseInt(newQuantityInput.value) || 1;
-        if (current > 1) {
-            newQuantityInput.value = current - 1;
-            updateTotalPrice();
-        }
+      const current = parseInt(newQuantityInput.value) || 1;
+      if (current > 1) {
+        newQuantityInput.value = current - 1;
+        updateTotalPrice();
+      }
     });
 
     // Cantidad - Aumentar
     newIncreaseBtn.addEventListener('click', () => {
-        const current = parseInt(newQuantityInput.value) || 1;
-        newQuantityInput.value = current + 1;
-        updateTotalPrice();
+      const current = parseInt(newQuantityInput.value) || 1;
+      newQuantityInput.value = current + 1;
+      updateTotalPrice();
     });
 
     // Cantidad - Cambio manual
     newQuantityInput.addEventListener('input', () => {
-        if (newQuantityInput.value < 1) newQuantityInput.value = 1;
-        updateTotalPrice();
+      if (newQuantityInput.value < 1) newQuantityInput.value = 1;
+      updateTotalPrice();
     });
 
     // Comprar
     buyBtn.addEventListener('click', () => {
-        const quantity = parseInt(newQuantityInput.value) || 1;
-        const total = product.price * quantity;
-        alert(`Compra iniciada:\n\nProducto: ${product.name}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nSerás redirigido al proceso de pago.`);
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
+      const quantity = parseInt(newQuantityInput.value) || 1;
+      const total = product.price * quantity;
+      alert(`Compra iniciada:\n\nProducto: ${product.name}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nSerás redirigido al proceso de pago.`);
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      // Limpiar parámetros de la URL
+      window.history.pushState({}, '', window.location.pathname);
     });
 
-    // Compartir
+    // Compartir - Botón modificado
     shareBtn.addEventListener('click', () => {
-        const productUrl = `${window.location.origin}${window.location.pathname}?product=${product.id}`;
-        const shareText = `Mira este producto: ${product.name} - $${product.price.toLocaleString()}\n${productUrl}`;
-        
-        // Copiar al portapapeles
-        navigator.clipboard.writeText(shareText).then(() => {
-            // Mostrar modal de éxito
-            document.getElementById('shareSuccessModal').style.display = 'flex';
-        }).catch(err => {
-            console.error('Error al copiar: ', err);
-            // Fallback: Abrir ventana de compartir
-            window.open(`mailto:?subject=${encodeURIComponent(product.name)}&body=${encodeURIComponent(shareText)}`, '_blank');
-        });
+      // Usar la función shareProduct que genera URL única
+      shareProduct(product.id);
     });
 
     // WhatsApp
     whatsappBtn.addEventListener('click', () => {
-        const quantity = parseInt(newQuantityInput.value) || 1;
-        const total = product.price * quantity;
-        const message = `Hola, estoy interesado en el producto:\n\n*${product.name}*\n\nPrecio: $${product.price.toLocaleString()}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nPor favor envíenme más información.`;
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/573102583224?text=${encodedMessage}`, '_blank');
+      const quantity = parseInt(newQuantityInput.value) || 1;
+      const total = product.price * quantity;
+      const message = `Hola, estoy interesado en el producto:\n\n*${product.name}*\n\nPrecio: $${product.price.toLocaleString()}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nPor favor envíenme más información.`;
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/573102583224?text=${encodedMessage}`, '_blank');
     });
 
     // Cerrar - Botón
     closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      // Limpiar parámetros de la URL
+      window.history.pushState({}, '', window.location.pathname);
     });
 
     // Cerrar - X
     modalClose.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      // Limpiar parámetros de la URL
+      window.history.pushState({}, '', window.location.pathname);
     });
 
     // Cerrar al hacer clic fuera
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        // Limpiar parámetros de la URL
+        window.history.pushState({}, '', window.location.pathname);
+      }
     });
   }
 
@@ -2420,6 +2544,9 @@
     // Inicializar nueva sección de productos
     initAllProductsSection();
     
+    // Inicializar sistema de URLs de productos
+    initProductURLs();
+    
     // Inicializar slider
     showSlide(0);
     
@@ -2432,6 +2559,38 @@
     document.getElementById('shareSuccessModal').addEventListener('click', function(e) {
       if (e.target === this) {
         this.style.display = 'none';
+      }
+    });
+    
+    // ===== NUEVO: Configurar modal de éxito para WhatsApp =====
+    // Configurar botón para cerrar modal de WhatsApp
+    if (whatsappSuccessClose) {
+      whatsappSuccessClose.addEventListener('click', function() {
+        whatsappSuccessModal.style.display = 'none';
+      });
+    }
+    
+    // Cerrar modal de WhatsApp al hacer clic fuera
+    if (whatsappSuccessModal) {
+      whatsappSuccessModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+    }
+    
+    // Manejar el botón de retroceso del navegador
+    window.addEventListener('popstate', function(event) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('product');
+      
+      if (!productId) {
+        // Si no hay parámetro de producto, cerrar el modal
+        const modal = document.getElementById('productModalEnhanced');
+        if (modal && modal.style.display === 'block') {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
       }
     });
   });
@@ -2688,7 +2847,7 @@
                            `✅ *Productos de limpieza:* 15% de descuento\n` +
                            `✅ *Paquete completo (3 servicios):* 30% de descuento\n\n` +
                            `📞 *Contáctanos para más información:*\n` +
-                           `3102583224 - 3125366593\n\n` +
+                           `3102583224 - 3102583224\n\n` +
                            `📍 Bogotá - Servicio a domicilio\n` +
                            `⏰ Lunes a Domingo 7am a 7pm`;
     
@@ -2715,7 +2874,10 @@
     // Limpiar formulario
     document.getElementById('contact-form').reset();
     
-    alert('¡Información enviada con éxito! Se abrirá WhatsApp con nuestras ofertas especiales.');
+    // Mostrar modal de éxito después de un breve retraso
+    setTimeout(() => {
+      showWhatsAppSuccess("¡Tu información ha sido enviada con éxito! Hemos abierto WhatsApp con nuestras ofertas especiales. Pronto nos pondremos en contacto contigo.");
+    }, 500);
   }
 
   function validatePhone(phone) {
