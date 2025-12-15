@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Clean Factory  - Servicios de Limpieza</title>
+  <title>Clean Factory - Servicios de Limpieza</title>
   <style>
     /* ===== ESTILOS GENERALES ===== */
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
     body{font-family:'Montserrat',sans-serif;line-height:1.6;color:#333;background:#f4f4f4;}
     .container{width:90%;max-width:1100px;margin:auto;padding:1rem;}
-   
+    
     /* ===== HEADER ===== */
     header{background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.1);position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;}
     #logo{height:5rem;}
@@ -42,26 +42,26 @@
     /* ===== ANIMACIONES MEJORADAS ===== */
     .slide-1 .main-title{transform:translateY(-100px);opacity:0;}
     .slide-1.active .main-title{animation:dropDown 1s both .2s;}
-   
+    
     .slide-1 .sub-title{transform:translateX(100px);opacity:0;}
     .slide-1.active .sub-title{animation:slideInRight 1s both .4s;}
-   
+    
     .slide-1 .schedule{opacity:0;display:flex;align-items:center;justify-content:center;gap:.5rem;}
     .slide-1.active .schedule{animation:fadeIn 1s both .6s;}
-   
+    
     .slide-1 .clock-icon{transform:translateX(-50px);opacity:0;}
     .slide-1.active .clock-icon{animation:slideInLeft 1s both .8s;}
-   
+    
     .slide-1 .schedule-text{transform:translateX(50px);opacity:0;}
     .slide-1.active .schedule-text{animation:slideInRight 1s both .8s;}
 
     /* SLIDE 2: Botones redondos y animaciones secuenciales */
     .slide-2 .offer-title{transform:translateY(-100px);opacity:0;}
     .slide-2.active .offer-title{animation:dropDown 1s both .2s;}
-   
+    
     .slide-2 .service-buttons{opacity:0;}
     .slide-2.active .service-buttons{animation:fadeIn 0.5s both .5s;display:flex;flex-direction:column;gap:.5rem;align-items:center;}
-   
+    
     /* Animación secuencial para botones */
     .slide-2 .service-buttons button{opacity:0;transform:translateY(20px);}
     .slide-2.active .service-buttons button:nth-child(1){animation:fadeInUp 0.5s both 0.7s;}
@@ -82,13 +82,13 @@
     /* SLIDE 3: Aspiradora animada */
     .slide-3 .offer-title{transform:translateX(-100px);opacity:0;}
     .slide-3.active .offer-title{animation:slideInLeft 1s both .2s;}
-   
+    
     .slide-3 .offer-subtitle{transform:translateX(100px);opacity:0;}
     .slide-3.active .offer-subtitle{animation:slideInRight 1s both .4s;}
-   
+    
     .slide-3 .vacuum{opacity:0;}
     .slide-3.active .vacuum{animation:moveVacuum 3s ease-in-out 1.2s both;}
-   
+    
     .slide-3 .whatsapp-btn{opacity:0;}
     .slide-3.active .whatsapp-btn{animation:fadeIn 1s both 4.2s;display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;padding:.75rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:700;}
 
@@ -232,7 +232,162 @@
       background: #555;
     }
 
-    /* Modal de producto MEJORADO */
+    /* ===== NUEVA SECCIÓN DE PRODUCTOS (Nuestros Productos) ===== */
+    #nuestros-productos {
+      padding: 4rem 0;
+      background: #f9f9f9;
+    }
+
+    #nuestros-productos .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    #nuestros-productos .section-subtitle {
+      text-align: center;
+      color: #7f8c8d;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .all-products-container {
+      max-height: 800px;
+      overflow-y: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .all-products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 10px;
+    }
+
+    .all-product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .all-product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .all-product-image-container {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .all-product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .all-product-card:hover .all-product-image {
+      transform: scale(1.05);
+    }
+
+    .all-product-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .all-product-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c3e50;
+      line-height: 1.4;
+    }
+
+    .all-product-price {
+      color: #e74c3c;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .all-product-description {
+      color: #7f8c8d;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .all-product-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .all-view-detail-btn {
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 12px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+
+    .all-view-detail-btn:hover {
+      background: #1976D2;
+    }
+
+    .all-product-category {
+      display: inline-block;
+      background: #f1f8ff;
+      color: #0366d6;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+
+    /* Scrollbar para la sección de productos */
+    .all-products-container::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .all-products-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+
+    .all-products-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+
+    .all-products-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* ===== MODAL DE PRODUCTO MEJORADO ===== */
     .product-modal {
       display: none;
       position: fixed;
@@ -240,44 +395,99 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 1000;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
       overflow-y: auto;
+      padding: 20px;
     }
 
     .product-modal-content {
       background: white;
-      margin: 5% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 800px;
+      margin: 2% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 95%;
+      max-width: 1000px;
       position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: modalFadeIn 0.4s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .product-modal-close {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 24px;
+      top: 20px;
+      right: 25px;
+      font-size: 28px;
       cursor: pointer;
       color: #555;
+      background: #f5f5f5;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .product-modal-close:hover {
+      background: #e74c3c;
+      color: white;
+      transform: rotate(90deg);
     }
 
     .product-modal-body {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 30px;
+      margin-top: 20px;
     }
 
-    .product-modal-image {
+    .product-modal-images {
       flex: 1;
       min-width: 300px;
     }
 
-    .product-modal-image img {
+    .product-main-image {
       width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-thumbnails {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .product-thumbnail {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
       border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .product-thumbnail:hover,
+    .product-thumbnail.active {
+      border-color: #2196F3;
+      transform: scale(1.05);
     }
 
     .product-modal-details {
@@ -286,13 +496,24 @@
     }
 
     .product-modal-name {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
       margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .product-modal-category {
+      display: inline-block;
+      background: #f1f8ff;
+      color: #0366d6;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
     }
 
     .product-modal-price {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       color: #4CAF50;
       font-weight: bold;
       margin-bottom: 20px;
@@ -300,52 +521,118 @@
 
     .product-description {
       font-size: 1.1rem;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #555;
-      margin-bottom: 20px;
-      font-family: 'Arial', sans-serif;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .product-specifications {
+      margin-bottom: 25px;
+    }
+
+    .spec-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .spec-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .spec-list li {
+      padding: 5px 0;
+      border-bottom: 1px dashed #eee;
+      color: #666;
     }
 
     .quantity-selector {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .quantity-selector label {
-      margin-right: 10px;
+      margin-right: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .quantity-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .quantity-btn:hover {
+      background: #e0e0e0;
+    }
+
+    .quantity-input {
+      width: 70px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 1.1rem;
       font-weight: bold;
     }
 
-    .quantity-selector input {
-      width: 60px;
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      text-align: center;
+    .total-price-container {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+
+    .total-price-label {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 5px;
     }
 
     .total-price {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       font-weight: bold;
-      margin-bottom: 20px;
       color: #2196F3;
     }
 
-    .modal-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .modal-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
       margin-bottom: 20px;
     }
 
     .modal-btn {
-      padding: 10px 15px;
+      padding: 15px 20px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1rem;
     }
 
     .buy-btn {
@@ -353,17 +640,32 @@
       color: white;
     }
 
-    .print-btn {
-      background: #FF9800;
+    .buy-btn:hover {
+      background: #45a049;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .share-btn {
+      background: #9C27B0;
       color: white;
+    }
+
+    .share-btn:hover {
+      background: #8e24aa;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
     }
 
     .whatsapp-btn-modal {
       background: #25D366;
       color: white;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    }
+
+    .whatsapp-btn-modal:hover {
+      background: #1da851;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
     }
 
     .close-btn {
@@ -371,16 +673,14 @@
       color: white;
     }
 
-    .email-input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 15px;
+    .close-btn:hover {
+      background: #e53935;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
     }
 
-    /* ===== NUEVO MODAL DE ÉXITO PARA WHATSAPP ===== */
-    .whatsapp-success-modal {
+    /* Modal de éxito para compartir */
+    .share-success-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -388,12 +688,12 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.7);
-      z-index: 1200;
+      z-index: 2100;
       justify-content: center;
       align-items: center;
     }
 
-    .whatsapp-success-content {
+    .share-success-content {
       background: white;
       padding: 30px;
       border-radius: 10px;
@@ -403,26 +703,26 @@
       animation: slideInFromBottom 0.5s ease-out;
     }
 
-    .whatsapp-success-icon {
+    .share-success-icon {
       font-size: 60px;
-      color: #25D366;
+      color: #9C27B0;
       margin-bottom: 20px;
     }
 
-    .whatsapp-success-title {
+    .share-success-title {
       font-size: 1.5rem;
-      color: #25D366;
+      color: #9C27B0;
       margin-bottom: 15px;
     }
 
-    .whatsapp-success-message {
+    .share-success-message {
       margin-bottom: 25px;
       color: #555;
       line-height: 1.5;
     }
 
-    .whatsapp-success-close {
-      background: #25D366;
+    .share-success-close {
+      background: #9C27B0;
       color: white;
       border: none;
       padding: 12px 25px;
@@ -432,110 +732,8 @@
       transition: background 0.3s;
     }
 
-    .whatsapp-success-close:hover {
-      background: #1DA851;
-    }
-
-    @keyframes slideInFromBottom {
-      0% {
-        transform: translateY(100px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* Modal de pago Bolt */
-    .bolt-payment-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 1100;
-      overflow-y: auto;
-    }
-
-    .bolt-payment-content {
-      background: white;
-      margin: 10% auto;
-      padding: 25px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      position: relative;
-    }
-
-    .bolt-payment-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #555;
-    }
-
-    .bolt-input {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    .bolt-submit-btn {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.1rem;
-      width: 100%;
-      transition: background 0.3s;
-    }
-
-    .bolt-submit-btn:hover {
-      background: #45a049;
-    }
-
-    /* Animación de pago exitoso */
-    .payment-success {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 1200;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .success-animation {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      animation: pulse 2s infinite;
-    }
-
-    .success-animation h2 {
-      color: #4CAF50;
-      margin-bottom: 15px;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .share-success-close:hover {
+      background: #8e24aa;
     }
 
     /* Keyframes de animación */
@@ -548,6 +746,17 @@
       0%{transform:translateX(-150px) rotate(-10deg);opacity:0;}
       50%{transform:translateX(0) rotate(5deg);opacity:1;}
       100%{transform:translateX(150px) rotate(-5deg);opacity:0;}
+    }
+    
+    @keyframes slideInFromBottom {
+      0% {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     /* Imagen de aspiradora */
@@ -638,7 +847,7 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-   
+    
     .rectangular-images-grid img:hover {
       transform: scale(1.02);
     }
@@ -657,18 +866,18 @@
         align-items: center;
         justify-content: center;
     }
-   
+    
     /* Efecto de zoom para el fondo */
     .service-background-section {
         animation: backgroundZoom 20s ease-in-out infinite;
     }
-   
+    
     @keyframes backgroundZoom {
         0% { background-size: 100% auto; }
         50% { background-size: 110% auto; }
         100% { background-size: 100% auto; }
     }
-   
+    
     /* Overlay oscuro para mejorar legibilidad */
     .service-background-section::before {
         content: '';
@@ -677,10 +886,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0); /* Fondo oscuro semi-transparente */
+        background-color: rgba(0, 0, 0, 0.6);
         z-index: 1;
     }
-   
+    
     /* Asegurar que el contenido esté por encima del fondo */
     .service-background-section .container {
         position: relative;
@@ -775,7 +984,7 @@
     #contact textarea {
         min-height: 100px;
     }
-   
+    
     .whatsapp-button {
         display: inline-flex;
         align-items: center;
@@ -847,7 +1056,7 @@
         fill: #2b6cb0;
         transform: scale(1.1);
     }
-   
+    
     .form-field-margin {
         margin-bottom: 1.25rem;
     }
@@ -875,7 +1084,7 @@
         position: relative;
         display: inline-block;
     }
-   
+    
     .image-btn {
         position: absolute;
         bottom: 10px;
@@ -890,25 +1099,25 @@
         transition: opacity 0.3s ease;
         z-index: 10;
     }
-   
+    
     .image-container:hover .image-btn {
         opacity: 1;
     }
-   
+    
     .logo-editor {
         display: flex;
         align-items: center;
         gap: 15px;
         margin-bottom: 20px;
     }
-   
+    
     .logo-preview {
         max-width: 150px;
         border: 1px solid #ddd;
         border-radius: 5px;
         padding: 5px;
     }
-   
+    
     /* Modal de imagen */
     .modal {
         display: none;
@@ -920,7 +1129,7 @@
         height: 100%;
         background-color: rgba(0,0,0,0.7);
     }
-   
+    
     .modal-content {
         background-color: #fefefe;
         margin: 10% auto;
@@ -931,7 +1140,7 @@
         border-radius: 10px;
         position: relative;
     }
-   
+    
     .close {
         color: #aaa;
         float: right;
@@ -939,22 +1148,22 @@
         font-weight: bold;
         cursor: pointer;
     }
-   
+    
     .close:hover {
         color: black;
     }
-   
+    
     .image-upload-container {
         margin: 20px 0;
     }
-   
+    
     .image-preview {
         max-width: 100%;
         max-height: 300px;
         margin-top: 15px;
         display: none;
     }
-   
+    
     /* Estilos para la versión pública */
     .public-version .image-btn,
     .public-version .action-buttons,
@@ -975,7 +1184,7 @@
       z-index: 2000;
       overflow: hidden;
     }
-   
+    
     .image-zoom-content {
       position: absolute;
       top: 50%;
@@ -985,7 +1194,7 @@
       max-height: 90%;
       object-fit: contain;
     }
-   
+    
     .image-zoom-caption {
       position: absolute;
       bottom: 20px;
@@ -997,7 +1206,7 @@
       padding: 10px;
       background-color: rgba(0, 0, 0, 0.7);
     }
-   
+    
     .image-zoom-close {
       position: absolute;
       top: 20px;
@@ -1008,11 +1217,11 @@
       cursor: pointer;
       z-index: 2001;
     }
-   
+    
     .image-zoom-close:hover {
       color: #ccc;
     }
-   
+    
     .image-zoom-nav {
       position: absolute;
       top: 50%;
@@ -1023,7 +1232,7 @@
       transform: translateY(-50%);
       z-index: 2001;
     }
-   
+    
     .image-zoom-nav button {
       background: rgba(0, 0, 0, 0.5);
       color: white;
@@ -1035,7 +1244,7 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-   
+    
     .image-zoom-nav button:hover {
       background: rgba(0, 0, 0, 0.8);
     }
@@ -1093,6 +1302,12 @@
             padding: 3rem 1rem;
             min-height: 60vh;
         }
+        .all-products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+        .modal-buttons-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     @media (max-width: 480px) {
@@ -1128,6 +1343,23 @@
         .service-background-section {
             padding: 2rem 1rem;
             min-height: 50vh;
+        }
+        .all-products-grid {
+            grid-template-columns: 1fr;
+        }
+        .all-product-image-container {
+            height: 180px;
+        }
+        .product-modal-content {
+            width: 98%;
+            padding: 15px;
+        }
+        .modal-buttons-grid {
+            gap: 10px;
+        }
+        .modal-btn {
+            padding: 12px 15px;
+            font-size: 0.9rem;
         }
     }
   </style>
@@ -1222,9 +1454,9 @@
             <div class="banner-message">Productos de limpieza y aromatizantes</div>
             <div class="banner-message">Soy blanca esencia y tengo los mejores productos de calidad para la salud y para la limpieza de su hogar  </div>
           </div>
-         
+          
           <h2 style="text-align:center;color:#333;margin-bottom:20px;">Nuestros Productos</h2>
-         
+          
           <div class="products-scroll-container" id="products-scroll-container">
             <div class="products-grid" id="products-grid">
               <!-- Los productos se cargarán dinámicamente con JavaScript -->
@@ -1257,6 +1489,20 @@
         <div class="image-container">
           <img src="/imagenes/incienso-limpia-casa_922109_37260496.jpg" alt="Servicio destacado 4" class="editable-img" data-key="rect4">
           <button class="image-btn update-img-btn" data-target="rect4">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NUEVA SECCIÓN DE PRODUCTOS ===== -->
+  <section id="nuestros-productos" class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Nuestros Productos</h2>
+      <p class="section-subtitle">Explora nuestra amplia gama de productos de limpieza y cuidado para el hogar. Tenemos más de 50 productos disponibles para ti.</p>
+      
+      <div class="all-products-container">
+        <div class="all-products-grid" id="all-products-grid">
+          <!-- Los 50 productos se cargarán dinámicamente con JavaScript -->
         </div>
       </div>
     </div>
@@ -1662,83 +1908,75 @@
 </div>
 
 <!-- ===== MODAL DE PRODUCTO MEJORADO ===== -->
-<div id="productModal" class="product-modal">
+<div id="productModalEnhanced" class="product-modal">
   <div class="product-modal-content">
     <span class="product-modal-close">&times;</span>
     <div class="product-modal-body">
-      <div class="product-modal-image">
-        <img id="modal-product-image" src="" alt="Producto">
+      <div class="product-modal-images">
+        <img id="modal-main-image" class="product-main-image" src="" alt="Producto">
+        <div class="product-thumbnails" id="product-thumbnails">
+          <!-- Las miniaturas se cargarán dinámicamente -->
+        </div>
       </div>
       <div class="product-modal-details">
         <h2 id="modal-product-name" class="product-modal-name"></h2>
+        <div id="modal-product-category" class="product-modal-category"></div>
         <p id="modal-product-price" class="product-modal-price"></p>
+        
         <p id="modal-product-description" class="product-description"></p>
+        
+        <div class="product-specifications">
+          <h3 class="spec-title">Especificaciones:</h3>
+          <ul class="spec-list" id="modal-product-specs">
+            <!-- Las especificaciones se cargarán dinámicamente -->
+          </ul>
+        </div>
+        
         <div class="quantity-selector">
           <label for="product-quantity">Cantidad:</label>
-          <input type="number" id="product-quantity" min="1" value="1">
+          <div class="quantity-buttons">
+            <button class="quantity-btn" id="decrease-quantity">-</button>
+            <input type="number" id="product-quantity" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" id="increase-quantity">+</button>
+          </div>
         </div>
-        <div id="total-price" class="total-price">Total: $0</div>
-        <div class="modal-buttons">
-          <button id="buy-btn" class="modal-btn buy-btn">Comprar</button>
-          <button id="print-btn" class="modal-btn print-btn">Imprimir recibo</button>
-          <button id="whatsapp-btn" class="modal-btn whatsapp-btn-modal">
-            <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" width="16" alt="WhatsApp"> WhatsApp
+        
+        <div class="total-price-container">
+          <div class="total-price-label">Total a pagar:</div>
+          <div id="total-price" class="total-price">$0</div>
+        </div>
+        
+        <div class="modal-buttons-grid">
+          <button id="buy-btn-enhanced" class="modal-btn buy-btn">
+            <span>🛒</span> Comprar Producto
           </button>
-          <button id="close-modal-btn" class="modal-btn close-btn">Cerrar</button>
+          <button id="share-product-btn" class="modal-btn share-btn">
+            <span>📤</span> Compartir Producto
+          </button>
+          <button id="whatsapp-btn-enhanced" class="modal-btn whatsapp-btn-modal">
+            <span>💬</span> Consultar por WhatsApp
+          </button>
+          <button id="close-modal-btn-enhanced" class="modal-btn close-btn">
+            <span>✕</span> Cerrar
+          </button>
         </div>
-        <div id="email-section" style="display:none;">
-          <input type="email" id="customer-email" class="email-input" placeholder="Ingresa tu correo para recibir el recibo">
-          <button id="send-receipt-btn" class="modal-btn print-btn">Enviar recibo por correo</button>
+        
+        <div class="product-notes">
+          <p><small>* Todos nuestros productos cuentan con garantía de calidad</small></p>
+          <p><small>* Envíos a todo Bogotá dentro de las 24 horas</small></p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL DE PAGO BOLT ===== -->
-<div id="boltPaymentModal" class="bolt-payment-modal">
-  <div class="bolt-payment-content">
-    <span class="bolt-payment-close">&times;</span>
-    <h2 style="text-align:center;margin-bottom:20px;">Pago con Bolt</h2>
-    <p style="text-align:center;margin-bottom:20px;">Complete la información para procesar su pago</p>
-   
-    <div style="background:#f5f5f5;padding:15px;border-radius:8px;margin-bottom:20px;">
-      <p style="margin:0;font-weight:bold;">Detalles del pedido:</p>
-      <p id="bolt-product-details" style="margin:5px 0 0 0;"></p>
-      <p id="bolt-total-details" style="margin:5px 0 0 0;font-weight:bold;"></p>
-    </div>
-   
-    <div>
-      <label for="bolt-phone">Número de teléfono para asociar con Bolt:</label>
-      <input type="tel" id="bolt-phone" class="bolt-input" placeholder="Ej: 3121234567" required>
-    </div>
-   
-    <div>
-      <label for="bolt-email">Correo electrónico:</label>
-      <input type="email" id="bolt-email" class="bolt-input" placeholder="tu@email.com" required>
-    </div>
-   
-    <button id="bolt-submit-btn" class="bolt-submit-btn">Iniciar Compra</button>
-  </div>
-</div>
-
-<!-- ===== NUEVO MODAL DE ÉXITO PARA WHATSAPP ===== -->
-<div id="whatsappSuccessModal" class="whatsapp-success-modal">
-  <div class="whatsapp-success-content">
-    <div class="whatsapp-success-icon">✓</div>
-    <h2 class="whatsapp-success-title">¡Mensaje Enviado!</h2>
-    <p class="whatsapp-success-message">Tu mensaje ha sido enviado correctamente por WhatsApp. Pronto nos pondremos en contacto contigo.</p>
-    <button class="whatsapp-success-close" id="whatsapp-success-close">Aceptar</button>
-  </div>
-</div>
-
-<!-- ===== ANIMACIÓN DE PAGO EXITOSO ===== -->
-<div id="payment-success" class="payment-success">
-  <div class="success-animation">
-    <h2>¡Pago Exitoso!</h2>
-    <p>Tu pedido ha sido procesado correctamente.</p>
-    <p>Recibirás un correo con los detalles de tu compra.</p>
-    <button id="close-success-btn" class="modal-btn close-btn">Cerrar</button>
+<!-- ===== MODAL DE ÉXITO AL COMPARTIR ===== -->
+<div id="shareSuccessModal" class="share-success-modal">
+  <div class="share-success-content">
+    <div class="share-success-icon">✓</div>
+    <h2 class="share-success-title">¡Producto Compartido!</h2>
+    <p class="share-success-message">El enlace del producto ha sido copiado al portapapeles. Puedes compartirlo en tus redes sociales o mensajes.</p>
+    <button class="share-success-close" id="share-success-close">Aceptar</button>
   </div>
 </div>
 
@@ -1775,21 +2013,115 @@
   const prevImageBtn = document.getElementById('prevImage');
   const nextImageBtn = document.getElementById('nextImage');
   const imageZoomClose = document.querySelector('.image-zoom-close');
- 
+  
   let currentImageIndex = 0;
   let allImages = [];
 
-  /* ===== VARIABLES PARA E-COMMERCE ===== */
-  const boltPaymentModal = document.getElementById('boltPaymentModal');
-  const boltPaymentClose = document.querySelector('.bolt-payment-close');
-  const boltSubmitBtn = document.getElementById('bolt-submit-btn');
- 
-  /* ===== NUEVAS VARIABLES PARA MODAL DE ÉXITO ===== */
-  const whatsappSuccessModal = document.getElementById('whatsappSuccessModal');
-  const whatsappSuccessClose = document.getElementById('whatsapp-success-close');
- 
-  let currentProduct = null;
-  let currentQuantity = 1;
+  /* ===== ARRAY DE 50 PRODUCTOS ===== */
+  const allProducts = [];
+  
+  // Productos base
+  const baseProducts = [
+    {
+      id: 1,
+      name: "Paquete de Limpieza Premium",
+      price: 250000,
+      category: "Limpieza Profunda",
+      images: [
+        "/imagenes/producto_cuadrada_133.jpeg",
+        "/imagenes/producto_cuadrada_22.jpeg",
+        "/imagenes/producto_cuadrada_33.jpeg"
+      ],
+      description: "Nuestro paquete completo de limpieza incluye productos especializados para todo tipo de muebles, tapicería y colchones. Elimina manchas, ácaros y malos olores de manera efectiva y segura.",
+      specifications: [
+        "Capacidad: 5 litros",
+        "Duración: Hasta 3 meses",
+        "Aplicación: Todo tipo de superficies",
+        "Aroma: Fresco y neutro"
+      ]
+    },
+    {
+      id: 2,
+      name: "Aromatizante Ambiental Larga Duración",
+      price: 180000,
+      category: "Aromatizantes",
+      images: [
+        "/imagenes/producto_cuadrada_269.jpeg",
+        "/imagenes/Velas-Aroma.jpg"
+      ],
+      description: "Aromatizante de larga duración con fragancia fresca que mantiene tus espacios con un agradable aroma por semanas. Ideal para hogares, oficinas y vehículos.",
+      specifications: [
+        "Duración: 60 días",
+        "Fragancias: 5 opciones",
+        "Cobertura: 50m²",
+        "Material: Cerámica premium"
+      ]
+    },
+    {
+      id: 3,
+      name: "Detergente Concentrado Profesional",
+      price: 32000,
+      category: "Detergentes",
+      images: [
+        "/imagenes/producto_cuadrada_344.jpeg"
+      ],
+      description: "Detergente concentrado de alta eficacia para ropa de todo tipo. Elimina manchas difíciles mientras cuida las fibras y colores de tus prendas.",
+      specifications: [
+        "Capacidad: 3 litros",
+        "Rendimiento: 30 lavados",
+        "Tipo: Concentrado",
+        "Aroma: Limón fresco"
+      ]
+    },
+    {
+      id: 4,
+      name: "Desinfectante Profesional Multiusos",
+      price: 28000,
+      category: "Desinfectantes",
+      images: [
+        "/imagenes/producto_cuadrada_488.jpeg"
+      ],
+      description: "Desinfectante de grado profesional para espacios. Elimina el 99.9% de bacterias y virus, ideal para baños, cocinas y áreas de alto tráfico.",
+      specifications: [
+        "Eficacia: 99.9% bacterias",
+        "Aplicación: Multisuperficies",
+        "Presentación: Spray 750ml",
+        "Aroma: Eucalipto"
+      ]
+    },
+    {
+      id: 5,
+      name: "Limpiador de Vidrios Sin Rayas",
+      price: 22000,
+      category: "Vidrios",
+      images: [
+        "/imagenes/producto_cuadrada_51010.jpeg"
+      ],
+      description: "Fórmula especial que deja tus vidrios y espejos brillantes sin manchas. No deja residuos y evita la acumulación de polvo.",
+      specifications: [
+        "Capacidad: 1 litro",
+        "Tipo: Spray",
+        "Sin rayas: Garantizado",
+        "Aroma: Neutro"
+      ]
+    }
+  ];
+
+  // Generar 50 productos variados
+  for (let i = 0; i < 50; i++) {
+    const baseProduct = baseProducts[i % baseProducts.length];
+    const productCopy = {
+      ...baseProduct,
+      id: i + 1,
+      name: `${baseProduct.name} ${i < 10 ? 'Plus' : i < 20 ? 'Pro' : i < 30 ? 'Elite' : i < 40 ? 'Premium' : 'Ultra'} ${i % 10 + 1}`,
+      price: Math.floor(baseProduct.price * (0.8 + Math.random() * 0.4)), // Variación de precio
+      category: i < 10 ? 'Limpieza Profunda' : 
+                i < 20 ? 'Aromatizantes' : 
+                i < 30 ? 'Detergentes' : 
+                i < 40 ? 'Desinfectantes' : 'Especializados'
+    };
+    allProducts.push(productCopy);
+  }
 
   /* ===== FUNCIÓN PARA NAVEGACIÓN POR BOTONES ===== */
   function scrollToSection(sectionId) {
@@ -1797,7 +2129,7 @@
     if (section) {
       // Cerrar el slider si está abierto
       closeSlider();
-     
+      
       // Desplazarse suavemente a la sección
       section.scrollIntoView({ behavior: 'smooth' });
     }
@@ -1813,31 +2145,31 @@
   function initImageZoom() {
     // Recolectar TODAS las imágenes que se pueden ampliar
     allImages = Array.from(document.querySelectorAll(
-      '.editable-img, .product-image, .rectangular-images-grid img, .gallery-grid img'
+      '.editable-img, .product-image, .rectangular-images-grid img, .gallery-grid img, .all-product-image'
     ));
-   
+    
     console.log('Imágenes encontradas para zoom:', allImages.length);
-   
+    
     // Agregar event listeners para doble clic
     allImages.forEach((img, index) => {
       img.addEventListener('dblclick', function(e) {
         e.preventDefault();
         openImageZoom(index);
       });
-     
+      
       // También permitir clic en imágenes de productos
-      if (img.classList.contains('product-image')) {
+      if (img.classList.contains('product-image') || img.classList.contains('all-product-image')) {
         img.style.cursor = 'pointer';
       } else {
         // Agregar cursor pointer a todas las imágenes para indicar que son clickeables
         img.style.cursor = 'zoom-in';
       }
     });
-   
+    
     // Event listeners para navegación
     prevImageBtn.addEventListener('click', showPrevImage);
     nextImageBtn.addEventListener('click', showNextImage);
-   
+    
     // Cerrar modal con ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && imageZoomModal.style.display === 'block') {
@@ -1848,7 +2180,7 @@
         showNextImage();
       }
     });
-   
+    
     // Cerrar modal al hacer clic en la X o fuera de la imagen
     imageZoomClose.addEventListener('click', closeImageZoom);
     imageZoomModal.addEventListener('click', function(e) {
@@ -1862,10 +2194,10 @@
   function openImageZoom(index) {
     currentImageIndex = index;
     const img = allImages[currentImageIndex];
-   
+    
     zoomedImage.src = img.src;
     imageCaption.textContent = img.alt || 'Imagen';
-   
+    
     imageZoomModal.style.display = 'block';
     document.body.style.overflow = 'hidden'; // Prevenir scroll
   }
@@ -1878,7 +2210,7 @@
   function showPrevImage() {
     currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
     const img = allImages[currentImageIndex];
-   
+    
     zoomedImage.src = img.src;
     imageCaption.textContent = img.alt || 'Imagen';
   }
@@ -1886,49 +2218,10 @@
   function showNextImage() {
     currentImageIndex = (currentImageIndex + 1) % allImages.length;
     const img = allImages[currentImageIndex];
-   
+    
     zoomedImage.src = img.src;
     imageCaption.textContent = img.alt || 'Imagen';
   }
-
-  /* ===== PRODUCTOS DEL E-COMMERCE CON RUTAS CORREGIDAS ===== */
-  const products = [
-    {
-      id: 1,
-      name: "Paquete de Limpieza",
-      price: 250000,
-      image: "/imagenes/producto_cuadrada_133.jpeg",
-      description: "Nuestro paquete completo de limpieza incluye productos especializados para todo tipo de muebles, tapicería y colchones. Elimina manchas, ácaros y malos olores de manera efectiva y segura."
-    },
-    {
-      id: 2,
-      name: "Aromatizante Ambiental",
-      price: 180000,
-      image: "/imagenes/producto_cuadrada_269.jpeg",
-      description: "Aromatizante de larga duración con fragancia fresca que mantiene tus espacios con un agradable aroma por semanas. Ideal para hogares, oficinas y vehículos."
-    },
-    {
-      id: 3,
-      name: "Detergente Concentrado",
-      price: 32000,
-      image: "/imagenes/producto_cuadrada_344.jpeg",
-      description: "Detergente concentrado de alta eficacia para ropa de todo tipo. Elimina manchas difíciles mientras cuida las fibras y colores de tus prendas."
-    },
-    {
-      id: 4,
-      name: "Desinfectante Profesional",
-      price: 28000,
-      image: "/imagenes/producto_cuadrada_488.jpeg",
-      description: "Desinfectante de grado profesional para espacios. Elimina el 99.9% de bacterias y virus, ideal para baños, cocinas y áreas de alto tráfico."
-    },
-    {
-      id: 5,
-      name: "Limpiador de Vidrios",
-      price: 22000,
-      image: "/imagenes/producto_cuadrada_51010.jpeg",
-      description: "Fórmula especial que deja tus vidrios y espejos brillantes sin manchas. No deja residuos y evita la acumulación de polvo."
-    }
-  ];
 
   /* ===== CARGAR IMAGENES GUARDADAS ===== */
   function loadSavedImages() {
@@ -1950,22 +2243,226 @@
   }
   loadSavedImages();
 
-  /* ===== NUEVA FUNCIÓN PARA MOSTRAR MODAL DE ÉXITO ===== */
-  function showWhatsAppSuccess(message = "Tu mensaje ha sido enviado correctamente por WhatsApp. Pronto nos pondremos en contacto contigo.") {
-    const messageElement = document.querySelector('.whatsapp-success-message');
-    messageElement.textContent = message;
-    whatsappSuccessModal.style.display = 'flex';
+  /* ===== FUNCIONES PARA LA NUEVA SECCIÓN DE PRODUCTOS ===== */
+  function initAllProductsSection() {
+    const productsGrid = document.getElementById('all-products-grid');
+    
+    allProducts.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.className = 'all-product-card';
+      productCard.innerHTML = `
+        <div class="all-product-image-container">
+          <img src="${product.images[0]}" alt="${product.name}" class="all-product-image">
+        </div>
+        <div class="all-product-info">
+          <div class="all-product-category">${product.category}</div>
+          <h3 class="all-product-name">${product.name}</h3>
+          <p class="all-product-price">$${product.price.toLocaleString()}</p>
+          <p class="all-product-description">${product.description.substring(0, 120)}...</p>
+          <div class="all-product-buttons">
+            <button class="all-view-detail-btn" data-id="${product.id}">Ver Detalle</button>
+          </div>
+        </div>
+      `;
+      productsGrid.appendChild(productCard);
+    });
+
+    // Event listeners para los botones "Ver Detalle"
+    document.querySelectorAll('.all-view-detail-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const productId = parseInt(this.getAttribute('data-id'));
+        openEnhancedProductModal(productId);
+      });
+    });
   }
 
-  /* ===== INICIALIZAR E-COMMERCE ===== */
+  /* ===== MODAL MEJORADO DE PRODUCTO ===== */
+  function openEnhancedProductModal(productId) {
+    const product = allProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    const modal = document.getElementById('productModalEnhanced');
+    const mainImage = document.getElementById('modal-main-image');
+    const productName = document.getElementById('modal-product-name');
+    const productCategory = document.getElementById('modal-product-category');
+    const productPrice = document.getElementById('modal-product-price');
+    const productDescription = document.getElementById('modal-product-description');
+    const productSpecs = document.getElementById('modal-product-specs');
+    const quantityInput = document.getElementById('product-quantity');
+    const totalPrice = document.getElementById('total-price');
+    const thumbnailsContainer = document.getElementById('product-thumbnails');
+
+    // Llenar datos del producto
+    mainImage.src = product.images[0];
+    productName.textContent = product.name;
+    productCategory.textContent = product.category;
+    productPrice.textContent = `$${product.price.toLocaleString()}`;
+    productDescription.textContent = product.description;
+    
+    // Especificaciones
+    productSpecs.innerHTML = '';
+    if (product.specifications) {
+      product.specifications.forEach(spec => {
+        const li = document.createElement('li');
+        li.textContent = spec;
+        productSpecs.appendChild(li);
+      });
+    }
+
+    // Miniaturas
+    thumbnailsContainer.innerHTML = '';
+    product.images.forEach((imgSrc, index) => {
+      const thumbnail = document.createElement('img');
+      thumbnail.src = imgSrc;
+      thumbnail.className = `product-thumbnail ${index === 0 ? 'active' : ''}`;
+      thumbnail.alt = `Vista ${index + 1}`;
+      thumbnail.addEventListener('click', () => {
+        mainImage.src = imgSrc;
+        // Actualizar clase activa
+        document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+        thumbnail.classList.add('active');
+      });
+      thumbnailsContainer.appendChild(thumbnail);
+    });
+
+    // Inicializar cantidad y precio
+    quantityInput.value = 1;
+    updateTotalPrice();
+
+    // Mostrar modal
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // Configurar eventos
+    setupEnhancedModalEvents(product, modal);
+  }
+
+  function setupEnhancedModalEvents(product, modal) {
+    const quantityInput = document.getElementById('product-quantity');
+    const decreaseBtn = document.getElementById('decrease-quantity');
+    const increaseBtn = document.getElementById('increase-quantity');
+    const buyBtn = document.getElementById('buy-btn-enhanced');
+    const shareBtn = document.getElementById('share-product-btn');
+    const whatsappBtn = document.getElementById('whatsapp-btn-enhanced');
+    const closeBtn = document.getElementById('close-modal-btn-enhanced');
+    const modalClose = document.querySelector('.product-modal-close');
+
+    // Cantidad
+    function updateTotalPrice() {
+      const quantity = parseInt(quantityInput.value) || 1;
+      const total = product.price * quantity;
+      document.getElementById('total-price').textContent = `$${total.toLocaleString()}`;
+    }
+
+    decreaseBtn.addEventListener('click', () => {
+      const current = parseInt(quantityInput.value) || 1;
+      if (current > 1) {
+        quantityInput.value = current - 1;
+        updateTotalPrice();
+      }
+    });
+
+    increaseBtn.addEventListener('click', () => {
+      const current = parseInt(quantityInput.value) || 1;
+      quantityInput.value = current + 1;
+      updateTotalPrice();
+    });
+
+    quantityInput.addEventListener('input', updateTotalPrice);
+
+    // Comprar
+    buyBtn.addEventListener('click', () => {
+      const quantity = parseInt(quantityInput.value) || 1;
+      const total = product.price * quantity;
+      alert(`Compra iniciada:\n\nProducto: ${product.name}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nSerás redirigido al proceso de pago.`);
+      // Aquí iría la integración con el sistema de pago
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    // Compartir
+    shareBtn.addEventListener('click', () => {
+      const productUrl = `${window.location.origin}${window.location.pathname}?product=${product.id}`;
+      const shareText = `Mira este producto: ${product.name} - $${product.price.toLocaleString()}\n${productUrl}`;
+      
+      // Copiar al portapapeles
+      navigator.clipboard.writeText(shareText).then(() => {
+        // Mostrar modal de éxito
+        document.getElementById('shareSuccessModal').style.display = 'flex';
+      }).catch(err => {
+        console.error('Error al copiar: ', err);
+        // Fallback: Abrir ventana de compartir
+        window.open(`mailto:?subject=${encodeURIComponent(product.name)}&body=${encodeURIComponent(shareText)}`, '_blank');
+      });
+    });
+
+    // WhatsApp
+    whatsappBtn.addEventListener('click', () => {
+      const quantity = parseInt(quantityInput.value) || 1;
+      const total = product.price * quantity;
+      const message = `Hola, estoy interesado en el producto:\n\n*${product.name}*\n\nPrecio: $${product.price.toLocaleString()}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nPor favor envíenme más información.`;
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/573102583224?text=${encodedMessage}`, '_blank');
+    });
+
+    // Cerrar
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    // Cerrar al hacer clic fuera
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  /* ===== INICIALIZACIÓN DEL SISTEMA ===== */
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar sistema existente
+    initEcommerce(); // Función existente del slide 5
+    initRotatingBanner(); // Función existente
+    initImageZoom(); // Función existente
+    
+    // Inicializar nueva sección de productos
+    initAllProductsSection();
+    
+    // Inicializar slider
+    showSlide(0);
+    
+    // Configurar modal de éxito para compartir
+    document.getElementById('share-success-close').addEventListener('click', function() {
+      document.getElementById('shareSuccessModal').style.display = 'none';
+    });
+    
+    // Cerrar modal de éxito al hacer clic fuera
+    document.getElementById('shareSuccessModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+  });
+
+  /* ===== FUNCIONES EXISTENTES DEL SISTEMA ORIGINAL ===== */
+  // Variable para productos del slide 5 (existente)
+  const products = allProducts.slice(0, 5); // Usamos los primeros 5 para el slide 5
+
   function initEcommerce() {
     const productsGrid = document.getElementById('products-grid');
-   
+    
     products.forEach(product => {
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
       productCard.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <img src="${product.images[0]}" alt="${product.name}" class="product-image">
         <div class="product-info">
           <h3 class="product-name">${product.name}</h3>
           <p class="product-price">$${product.price.toLocaleString()}</p>
@@ -1975,464 +2472,30 @@
       productsGrid.appendChild(productCard);
     });
 
-    // Agregar event listeners a los botones
+    // Event listeners para el slide 5
     document.querySelectorAll('.view-detail-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         const productId = parseInt(this.getAttribute('data-id'));
-        openProductModal(productId);
+        openEnhancedProductModal(productId); // Usar la nueva función
       });
     });
-
-    // Configurar modal de pago Bolt
-    boltPaymentClose.addEventListener('click', function() {
-      boltPaymentModal.style.display = 'none';
-    });
-
-    // Configurar modal de éxito de WhatsApp
-    whatsappSuccessClose.addEventListener('click', function() {
-      whatsappSuccessModal.style.display = 'none';
-    });
-
-    // Cerrar modal de éxito al hacer clic fuera
-    whatsappSuccessModal.addEventListener('click', function(e) {
-      if (e.target === whatsappSuccessModal) {
-        whatsappSuccessModal.style.display = 'none';
-      }
-    });
-
-    boltSubmitBtn.addEventListener('click', processBoltPayment);
-  }
-
-  /* ===== MODAL DE PRODUCTO MEJORADO ===== */
-  function openProductModal(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    currentProduct = product;
-    const modal = document.getElementById('productModal');
-    const productImage = document.getElementById('modal-product-image');
-    const productName = document.getElementById('modal-product-name');
-    const productPrice = document.getElementById('modal-product-price');
-    const productDescription = document.getElementById('modal-product-description');
-    const quantityInput = document.getElementById('product-quantity');
-    const totalPrice = document.getElementById('total-price');
-
-    // Llenar datos del producto
-    productImage.src = product.image;
-    productName.textContent = product.name;
-    productPrice.textContent = `$${product.price.toLocaleString()}`;
-    productDescription.textContent = product.description;
-    quantityInput.value = 1;
-    currentQuantity = 1;
-    updateTotalPrice();
-
-    // Mostrar modal
-    modal.style.display = 'block';
-
-    // Actualizar precio total cuando cambia la cantidad
-    quantityInput.addEventListener('input', function() {
-      currentQuantity = parseInt(this.value) || 1;
-      updateTotalPrice();
-    });
-
-    function updateTotalPrice() {
-      const total = product.price * currentQuantity;
-      totalPrice.textContent = `Total: $${total.toLocaleString()}`;
-    }
-
-    // Botón comprar - ahora abre modal de Bolt
-    document.getElementById('buy-btn').onclick = function() {
-      modal.style.display = 'none';
-      openBoltPaymentModal();
-    };
-
-    // Botón imprimir recibo
-    document.getElementById('print-btn').onclick = function() {
-      document.getElementById('email-section').style.display = 'block';
-    };
-
-    // Botón enviar recibo por correo
-    document.getElementById('send-receipt-btn').onclick = function() {
-      const email = document.getElementById('customer-email').value;
-      if (email) {
-        generateReceipt(product, currentQuantity, email);
-        alert('Recibo enviado a ' + email);
-        document.getElementById('email-section').style.display = 'none';
-      } else {
-        alert('Por favor ingresa un correo válido');
-      }
-    };
-
-    // Botón WhatsApp - MODIFICADO: Ahora envía al administrador y muestra modal de éxito
-    document.getElementById('whatsapp-btn').onclick = function() {
-      sendProductWhatsApp(product, currentQuantity);
-    };
-
-    // Botón cerrar
-    document.getElementById('close-modal-btn').onclick = function() {
-      modal.style.display = 'none';
-    };
-
-    // Cerrar modal al hacer clic en la X
-    document.querySelector('.product-modal-close').onclick = function() {
-      modal.style.display = 'none';
-    };
-  }
-
-  /* ===== FUNCIÓN CORREGIDA PARA WHATSAPP DE PRODUCTOS ===== */
-  function sendProductWhatsApp(product, quantity) {
-    const total = product.price * quantity;
-    // Este mensaje va al ADMINISTRADOR para procesar la compra
-    const message = `Nueva solicitud de compra:\n\nProducto: ${product.name}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nPor favor contactar al cliente para procesar el pedido.`;
-    const encodedMessage = encodeURIComponent(message);
-   
-    // Abrir WhatsApp
-    const whatsappWindow = window.open(`https://wa.me/573102583224?text=${encodedMessage}`, '_blank');
-   
-    // Mostrar modal de éxito después de un breve retraso
-    setTimeout(() => {
-      showWhatsAppSuccess("Tu consulta sobre el producto ha sido enviada correctamente. Pronto nos pondremos en contacto contigo para procesar tu pedido.");
-    }, 1000);
-  }
-
-  /* ===== MODAL DE PAGO BOLT ===== */
-  function openBoltPaymentModal() {
-    if (!currentProduct) return;
-
-    const boltProductDetails = document.getElementById('bolt-product-details');
-    const boltTotalDetails = document.getElementById('bolt-total-details');
-    const total = currentProduct.price * currentQuantity;
-
-    boltProductDetails.textContent = `${currentQuantity} x ${currentProduct.name}`;
-    boltTotalDetails.textContent = `Total: $${total.toLocaleString()}`;
-
-    // Limpiar campos anteriores
-    document.getElementById('bolt-phone').value = '';
-    document.getElementById('bolt-email').value = '';
-
-    boltPaymentModal.style.display = 'block';
-  }
-
-  /* ===== PROCESAR PAGO CON BOLT ===== */
-  function processBoltPayment() {
-    const phone = document.getElementById('bolt-phone').value;
-    const email = document.getElementById('bolt-email').value;
-
-    if (!phone || !email) {
-      alert('Por favor complete todos los campos');
-      return;
-    }
-
-    if (!validatePhone(phone)) {
-      alert('Por favor ingrese un número de teléfono válido');
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      alert('Por favor ingrese un correo electrónico válido');
-      return;
-    }
-
-    // Simular procesamiento de pago
-    boltSubmitBtn.textContent = 'Procesando...';
-    boltSubmitBtn.disabled = true;
-
-    // Simular conexión con Bolt
-    setTimeout(() => {
-      // En un entorno real, aquí se integraría con la API de Bolt
-      const total = currentProduct.price * currentQuantity;
-     
-      // Simular redirección a Bolt
-      const boltUrl = `https://bolt.com/payment?amount=${total}&phone=${phone}&email=${encodeURIComponent(email)}`;
-     
-      // Por ahora, simulamos el proceso
-      simulateBoltPayment(phone, email, total);
-    }, 2000);
-  }
-
-  function simulateBoltPayment(phone, email, total) {
-    // Simular proceso de pago
-    alert(`Redirigiendo a Bolt para procesar pago de $${total.toLocaleString()}\n\nNúmero asociado: ${phone}\nCorreo: ${email}`);
-   
-    // Simular confirmación de pago después de 3 segundos
-    setTimeout(() => {
-      // Simular confirmación exitosa
-      completeBoltPayment(phone, email, total);
-    }, 3000);
-  }
-
-  function completeBoltPayment(phone, email, total) {
-    // Cerrar modal de Bolt
-    boltPaymentModal.style.display = 'none';
-   
-    // Mostrar éxito
-    showPaymentSuccess();
-   
-    // Enviar correos de confirmación
-    sendConfirmationEmails(phone, email, total);
-   
-    // Enviar notificación por WhatsApp
-    sendWhatsAppConfirmation(phone, total);
-   
-    // Resetear botón
-    boltSubmitBtn.textContent = 'Iniciar Compra';
-    boltSubmitBtn.disabled = false;
-  }
-
-  function sendConfirmationEmails(phone, email, total) {
-    // En un entorno real, aquí se enviarían correos reales
-    // Por ahora, simulamos el envío
-   
-    const customerEmailContent = `
-      Asunto: Confirmación de Pago - Ariel Clean
-     
-      Hola,
-     
-      Tu pago ha sido procesado exitosamente.
-     
-      Detalles del pedido:
-      - Producto: ${currentProduct.name}
-      - Cantidad: ${currentQuantity}
-      - Total: $${total.toLocaleString()}
-      - Fecha: ${new Date().toLocaleString()}
-      - Método: Bolt/Nequi
-     
-      ¡Gracias por tu compra!
-     
-      Atentamente,
-      Equipo Ariel Clean
-    `;
-   
-    const adminEmailContent = `
-      Asunto: Nuevo Pago Recibido - Ariel Clean
-     
-      Se ha recibido un nuevo pago:
-     
-      Detalles del cliente:
-      - Teléfono: ${phone}
-      - Correo: ${email}
-     
-      Detalles del pedido:
-      - Producto: ${currentProduct.name}
-      - Cantidad: ${currentQuantity}
-      - Total: $${total.toLocaleString()}
-      - Fecha: ${new Date().toLocaleString()}
-      - Método: Bolt/Nequi
-    `;
-   
-    console.log("Correo enviado al cliente:", email);
-    console.log(customerEmailContent);
-   
-    console.log("Correo enviado al administrador: davidnoamorales@gmail.com");
-    console.log(adminEmailContent);
-  }
-
-  function sendWhatsAppConfirmation(phone, total) {
-    // En un entorno real, aquí se enviaría un mensaje de WhatsApp
-    // usando la API de WhatsApp Business
-   
-    const message = `✅ Pago confirmado por $${total.toLocaleString()}. Gracias por tu compra en Ariel Clean.`;
-    const encodedMessage = encodeURIComponent(message);
-   
-    // Abrir WhatsApp con el mensaje predefinido
-    window.open(`https://wa.me/57${phone}?text=${encodedMessage}`, '_blank');
-  }
-
-  /* ===== FUNCIONES DE VALIDACIÓN ===== */
-  function validatePhone(phone) {
-    const phoneRegex = /^[0-9]{10}$/;
-    return phoneRegex.test(phone);
-  }
-
-  function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  /* ===== FUNCIONES DEL FORMULARIO DE CONTACTO CORREGIDAS ===== */
-  function sendContactInfo() {
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    if (!name || !phone || !email || !message) {
-      alert('Por favor complete todos los campos');
-      return;
-    }
-
-    if (!validatePhone(phone)) {
-      alert('Por favor ingrese un número de teléfono válido (10 dígitos)');
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      alert('Por favor ingrese un correo electrónico válido');
-      return;
-    }
-
-    // Enviar información al administrador (número real 573102583224)
-    sendAdminNotification(name, phone, email, message);
-   
-    // Enviar correo de bienvenida al CLIENTE (no a ti mismo)
-    sendWelcomeEmail(name, email, phone);
-   
-    // Enviar mensaje de WhatsApp al CLIENTE (no a ti mismo)
-    sendWelcomeWhatsApp(phone, name);
-   
-    // Limpiar formulario
-    document.getElementById('contact-form').reset();
-  }
-
-  function sendAdminNotification(name, phone, email, message) {
-    // Este mensaje va al ADMINISTRADOR (573102583224)
-    const adminMessage = `Nuevo contacto desde el sitio web:\n\nNombre: ${name}\nTeléfono: ${phone}\nEmail: ${email}\nMensaje: ${message}`;
-    const encodedAdminMessage = encodeURIComponent(adminMessage);
-   
-    // Abrir WhatsApp del ADMINISTRADOR
-    const whatsappWindow = window.open(`https://wa.me/573102583224?text=${encodedAdminMessage}`, '_blank');
-   
-    // Mostrar modal de éxito
-    setTimeout(() => {
-      showWhatsAppSuccess("Tu información de contacto ha sido enviada correctamente. Pronto nos pondremos en contacto contigo.");
-    }, 1000);
-  }
-
-  function sendWelcomeEmail(name, email, phone) {
-    // En un entorno real, aquí se enviaría un correo al CLIENTE
-    const emailContent = `
-      Asunto: ¡Bienvenido a  Clean Factory ! - Ofertas Especiales
-     
-      Hola ${name},
-     
-      ¡Gracias por contactarnos!
-     
-      En Clean Factory nos especializamos en servicios profesionales de limpieza.
-     
-      Pronto nos pondremos en contacto con usted al teléfono ${phone}.
-     
-      OFERTAS ESPECIALES PARA TI:
-      🔹 10% de descuento en tu primer servicio
-      🔹 Paquete de limpieza completo por solo $250,000
-      🔹 Productos de limpieza especializados
-     
-      ¡Estamos para servirte soy Blanca Cardozo Asesora y vendedora https://clean-factory-chi.vercel.app/imagenes/Limpiezacortinasgeneral.jpg !
-     
-      Atentamente,
-      Equipo Clean Factory
-      📞 573102583224 , https://clean-factory-chi.vercel.app/ https://ilutronicsoluciones-n2wu.vercel.app/
-    `;
-   
-    console.log("Correo de bienvenida enviado al CLIENTE:", email);
-    console.log(emailContent);
-  }
-
-  function sendWelcomeWhatsApp(phone, name) {
-    // Este mensaje va al CLIENTE (número que ingresó en el formulario)
-    const clientMessage = `¡Hola ${name}! 👋
-
-Gracias por contactar a * Clean Factory* 🧼✨
-
-Hemos recibido tu información y pronto nos pondremos en contacto contigo.
-
-Te ofrecemos:
-• Lavado profesional de muebles
-• Limpieza de colchones
-• Productos de limpieza especializados
-• Servicio a domicilio
-
-*OFERTA ESPECIAL:* 10% de descuento en tu primer servicio!
-
-📍 Bogotá - Lunes a Domingo 7am a 7pm
-
-¿En qué podemos ayudarte  🔹 Paquete de limpieza completo por solo $250,000
-      🔹 Productos de limpieza especializados
-     
-      ¡Estamos para servirte soy Blanca Cardozo Asesora y vendedora https://clean-factory-chi.vercel.app/imagenes/Limpiezacortinasgeneral.jpg !
-     
-      Atentamente,
-      Equipo Clean Factory
-      📞 573102583224 , https://clean-factory-chi.vercel.app/ https://ilutronicsoluciones-n2wu.vercel.app/ 😊`;
-
-    const encodedClientMessage = encodeURIComponent(clientMessage);
-   
-    // Abrir WhatsApp del CLIENTE (número que ingresó)
-    const whatsappWindow = window.open(`https://wa.me/57${phone}?text=${encodedClientMessage}`, '_blank');
-   
-    // Mostrar modal de éxito para el cliente
-    setTimeout(() => {
-      showWhatsAppSuccess("Te hemos enviado un mensaje de bienvenida por WhatsApp con información sobre nuestros servicios y ofertas especiales.");
-    }, 1000);
-  }
-
-  /* ===== MOSTRAR ANIMACIÓN DE PAGO EXITOSO ===== */
-  function showPaymentSuccess() {
-    const paymentSuccess = document.getElementById('payment-success');
-    paymentSuccess.style.display = 'flex';
-   
-    // Cerrar animación de éxito
-    document.getElementById('close-success-btn').onclick = function() {
-      paymentSuccess.style.display = 'none';
-    };
-  }
-
-  /* ===== GENERAR RECIBO ===== */
-  function generateReceipt(product, quantity, email) {
-    const total = product.price * quantity;
-   
-    // Crear contenido del recibo
-    const receiptContent = `
-      <html>
-        <head>
-          <title>Recibo de Compra - Ariel Clean</title>
-          <style>
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            .header { text-align: center; margin-bottom: 20px; }
-            .details { margin-bottom: 20px; }
-            .total { font-weight: bold; font-size: 1.2em; }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <h1> Clean Factory</h1>
-            <p>Bogotá - Lunes a Domingo 7am a 7pm</p>
-          </div>
-          <div class="details">
-            <h2>Recibo de Compra</h2>
-            <p><strong>Producto:</strong> ${product.name}</p>
-            <p><strong>Cantidad:</strong> ${quantity}</p>
-            <p><strong>Precio unitario:</strong> $${product.price.toLocaleString()}</p>
-            <p class="total"><strong>Total:</strong> $${total.toLocaleString()}</p>
-            <p><strong>Fecha:</strong> ${new Date().toLocaleDateString()}</p>
-          </div>
-          <p>¡Gracias por su compra!</p>
-        </body>
-      </html>
-    `;
-   
-    // En un entorno real, aquí se enviaría el recibo por correo
-    console.log("Recibo generado para:", email);
-    console.log(receiptContent);
-   
-    // Simulación de envío de correo
-    alert(`Recibo enviado a ${email}`);
   }
 
   /* ===== BANNER ROTATIVO ===== */
   function initRotatingBanner() {
     const messages = document.querySelectorAll('.banner-message');
     let currentIndex = 0;
-   
+    
     function showNextMessage() {
       messages.forEach(msg => msg.classList.remove('active'));
       messages[currentIndex].classList.add('active');
-     
+      
       currentIndex = (currentIndex + 1) % messages.length;
     }
-   
+    
     // Mostrar primer mensaje
     showNextMessage();
-   
+    
     // Cambiar mensaje cada 5 segundos
     setInterval(showNextMessage, 5000);
   }
@@ -2465,10 +2528,9 @@ Te ofrecemos:
 
   /* ===== MODAL ===== */
   closeModal.onclick = () => modal.style.display = 'none';
-  window.onclick = e => {
+  window.onclick = e => { 
     if (e.target == modal) modal.style.display = 'none';
-    if (e.target == boltPaymentModal) boltPaymentModal.style.display = 'none';
-    if (e.target == whatsappSuccessModal) whatsappSuccessModal.style.display = 'none';
+    if (e.target == imageZoomModal) imageZoomModal.style.display = 'none';
   };
 
   imageUpload.addEventListener('change', e => {
@@ -2549,7 +2611,7 @@ Te ofrecemos:
   function showSlide(idx) {
     // Detener timeout anterior
     clearTimeout(slideTimeout);
-   
+    
     // Actualizar slide activo
     track.style.transform = `translateX(-${idx * 20}%)`;
     slides.forEach(s => s.classList.remove('active'));
@@ -2574,13 +2636,55 @@ Te ofrecemos:
     showSlide(currentSlide);
   }
 
-  // Inicializar componentes cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', function() {
-    initEcommerce();
-    initRotatingBanner();
-    initImageZoom(); // Inicializar el sistema de zoom de imágenes
-    showSlide(0);
-  });
+  /* ===== FUNCIONES DEL FORMULARIO DE CONTACTO ===== */
+  function sendContactInfo() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    if (!name || !phone || !email || !message) {
+      alert('Por favor complete todos los campos');
+      return;
+    }
+
+    if (!validatePhone(phone)) {
+      alert('Por favor ingrese un número de teléfono válido (10 dígitos)');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      alert('Por favor ingrese un correo electrónico válido');
+      return;
+    }
+
+    // Enviar información al administrador
+    sendAdminNotification(name, phone, email, message);
+    
+    // Limpiar formulario
+    document.getElementById('contact-form').reset();
+    
+    alert('¡Información enviada con éxito! Pronto nos pondremos en contacto contigo.');
+  }
+
+  function validatePhone(phone) {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  }
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function sendAdminNotification(name, phone, email, message) {
+    // Este mensaje va al ADMINISTRADOR (573102583224)
+    const adminMessage = `Nuevo contacto desde el sitio web:\n\nNombre: ${name}\nTeléfono: ${phone}\nEmail: ${email}\nMensaje: ${message}`;
+    const encodedAdminMessage = encodeURIComponent(adminMessage);
+    
+    // Abrir WhatsApp del ADMINISTRADOR
+    window.open(`https://wa.me/573102583224?text=${encodedAdminMessage}`, '_blank');
+  }
 </script>
 </body>
 </html>
