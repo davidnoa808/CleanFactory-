@@ -2243,6 +2243,199 @@
   }
   loadSavedImages();
 
+  /* ===== MODAL MEJORADO DE PRODUCTO ===== */
+  function openEnhancedProductModal(productId) {
+    const product = allProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    const modal = document.getElementById('productModalEnhanced');
+    const mainImage = document.getElementById('modal-main-image');
+    const productName = document.getElementById('modal-product-name');
+    const productCategory = document.getElementById('modal-product-category');
+    const productPrice = document.getElementById('modal-product-price');
+    const productDescription = document.getElementById('modal-product-description');
+    const productSpecs = document.getElementById('modal-product-specs');
+    const quantityInput = document.getElementById('product-quantity');
+    const totalPrice = document.getElementById('total-price');
+    const thumbnailsContainer = document.getElementById('product-thumbnails');
+
+    // Llenar datos del producto
+    mainImage.src = product.images[0];
+    productName.textContent = product.name;
+    productCategory.textContent = product.category;
+    productPrice.textContent = `$${product.price.toLocaleString()}`;
+    productDescription.textContent = product.description;
+    
+    // Especificaciones
+    productSpecs.innerHTML = '';
+    if (product.specifications) {
+        product.specifications.forEach(spec => {
+            const li = document.createElement('li');
+            li.textContent = spec;
+            productSpecs.appendChild(li);
+        });
+    }
+
+    // Miniaturas
+    thumbnailsContainer.innerHTML = '';
+    product.images.forEach((imgSrc, index) => {
+        const thumbnail = document.createElement('img');
+        thumbnail.src = imgSrc;
+        thumbnail.className = `product-thumbnail ${index === 0 ? 'active' : ''}`;
+        thumbnail.alt = `Vista ${index + 1}`;
+        thumbnail.addEventListener('click', () => {
+            mainImage.src = imgSrc;
+            // Actualizar clase activa
+            document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        });
+        thumbnailsContainer.appendChild(thumbnail);
+    });
+
+    // Inicializar cantidad y precio
+    quantityInput.value = 1;
+    
+    // Función para actualizar el precio total (definida en ámbito global)
+    function updateTotalPrice() {
+        const quantity = parseInt(quantityInput.value) || 1;
+        const total = product.price * quantity;
+        totalPrice.textContent = `$${total.toLocaleString()}`;
+    }
+    
+    updateTotalPrice(); // Llamar inicialmente
+
+    // Mostrar modal
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // Configurar eventos
+    setupEnhancedModalEvents(product, modal, updateTotalPrice);
+  }
+
+  // Función auxiliar para configurar eventos del modal mejorado
+  function setupEnhancedModalEvents(product, modal, updateTotalPrice) {
+    const quantityInput = document.getElementById('product-quantity');
+    const decreaseBtn = document.getElementById('decrease-quantity');
+    const increaseBtn = document.getElementById('increase-quantity');
+    const buyBtn = document.getElementById('buy-btn-enhanced');
+    const shareBtn = document.getElementById('share-product-btn');
+    const whatsappBtn = document.getElementById('whatsapp-btn-enhanced');
+    const closeBtn = document.getElementById('close-modal-btn-enhanced');
+    const modalClose = document.querySelector('.product-modal-close');
+
+    // Remover event listeners anteriores para evitar duplicados
+    decreaseBtn.replaceWith(decreaseBtn.cloneNode(true));
+    increaseBtn.replaceWith(increaseBtn.cloneNode(true));
+    quantityInput.replaceWith(quantityInput.cloneNode(true));
+    
+    // Obtener nuevos elementos después del reemplazo
+    const newDecreaseBtn = document.getElementById('decrease-quantity');
+    const newIncreaseBtn = document.getElementById('increase-quantity');
+    const newQuantityInput = document.getElementById('product-quantity');
+
+    // Cantidad - Disminuir
+    newDecreaseBtn.addEventListener('click', () => {
+        const current = parseInt(newQuantityInput.value) || 1;
+        if (current > 1) {
+            newQuantityInput.value = current - 1;
+            updateTotalPrice();
+        }
+    });
+
+    // Cantidad - Aumentar
+    newIncreaseBtn.addEventListener('click', () => {
+        const current = parseInt(newQuantityInput.value) || 1;
+        newQuantityInput.value = current + 1;
+        updateTotalPrice();
+    });
+
+    // Cantidad - Cambio manual
+    newQuantityInput.addEventListener('input', () => {
+        if (newQuantityInput.value < 1) newQuantityInput.value = 1;
+        updateTotalPrice();
+    });
+
+    // Comprar
+    buyBtn.addEventListener('click', () => {
+        const quantity = parseInt(newQuantityInput.value) || 1;
+        const total = product.price * quantity;
+        alert(`Compra iniciada:\n\nProducto: ${product.name}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nSerás redirigido al proceso de pago.`);
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+
+    // Compartir
+    shareBtn.addEventListener('click', () => {
+        const productUrl = `${window.location.origin}${window.location.pathname}?product=${product.id}`;
+        const shareText = `Mira este producto: ${product.name} - $${product.price.toLocaleString()}\n${productUrl}`;
+        
+        // Copiar al portapapeles
+        navigator.clipboard.writeText(shareText).then(() => {
+            // Mostrar modal de éxito
+            document.getElementById('shareSuccessModal').style.display = 'flex';
+        }).catch(err => {
+            console.error('Error al copiar: ', err);
+            // Fallback: Abrir ventana de compartir
+            window.open(`mailto:?subject=${encodeURIComponent(product.name)}&body=${encodeURIComponent(shareText)}`, '_blank');
+        });
+    });
+
+    // WhatsApp
+    whatsappBtn.addEventListener('click', () => {
+        const quantity = parseInt(newQuantityInput.value) || 1;
+        const total = product.price * quantity;
+        const message = `Hola, estoy interesado en el producto:\n\n*${product.name}*\n\nPrecio: $${product.price.toLocaleString()}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nPor favor envíenme más información.`;
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/573102583224?text=${encodedMessage}`, '_blank');
+    });
+
+    // Cerrar - Botón
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+
+    // Cerrar - X
+    modalClose.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+
+    // Cerrar al hacer clic fuera
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+  }
+
+  /* ===== INICIALIZACIÓN DEL SISTEMA ===== */
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar sistema existente
+    initEcommerce(); // Función existente del slide 5
+    initRotatingBanner(); // Función existente
+    initImageZoom(); // Función existente
+    
+    // Inicializar nueva sección de productos
+    initAllProductsSection();
+    
+    // Inicializar slider
+    showSlide(0);
+    
+    // Configurar modal de éxito para compartir
+    document.getElementById('share-success-close').addEventListener('click', function() {
+      document.getElementById('shareSuccessModal').style.display = 'none';
+    });
+    
+    // Cerrar modal de éxito al hacer clic fuera
+    document.getElementById('shareSuccessModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+  });
+
   /* ===== FUNCIONES PARA LA NUEVA SECCIÓN DE PRODUCTOS ===== */
   function initAllProductsSection() {
     const productsGrid = document.getElementById('all-products-grid');
@@ -2275,181 +2468,6 @@
       });
     });
   }
-
-  /* ===== MODAL MEJORADO DE PRODUCTO ===== */
-  function openEnhancedProductModal(productId) {
-    const product = allProducts.find(p => p.id === productId);
-    if (!product) return;
-
-    const modal = document.getElementById('productModalEnhanced');
-    const mainImage = document.getElementById('modal-main-image');
-    const productName = document.getElementById('modal-product-name');
-    const productCategory = document.getElementById('modal-product-category');
-    const productPrice = document.getElementById('modal-product-price');
-    const productDescription = document.getElementById('modal-product-description');
-    const productSpecs = document.getElementById('modal-product-specs');
-    const quantityInput = document.getElementById('product-quantity');
-    const totalPrice = document.getElementById('total-price');
-    const thumbnailsContainer = document.getElementById('product-thumbnails');
-
-    // Llenar datos del producto
-    mainImage.src = product.images[0];
-    productName.textContent = product.name;
-    productCategory.textContent = product.category;
-    productPrice.textContent = `$${product.price.toLocaleString()}`;
-    productDescription.textContent = product.description;
-    
-    // Especificaciones
-    productSpecs.innerHTML = '';
-    if (product.specifications) {
-      product.specifications.forEach(spec => {
-        const li = document.createElement('li');
-        li.textContent = spec;
-        productSpecs.appendChild(li);
-      });
-    }
-
-    // Miniaturas
-    thumbnailsContainer.innerHTML = '';
-    product.images.forEach((imgSrc, index) => {
-      const thumbnail = document.createElement('img');
-      thumbnail.src = imgSrc;
-      thumbnail.className = `product-thumbnail ${index === 0 ? 'active' : ''}`;
-      thumbnail.alt = `Vista ${index + 1}`;
-      thumbnail.addEventListener('click', () => {
-        mainImage.src = imgSrc;
-        // Actualizar clase activa
-        document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
-        thumbnail.classList.add('active');
-      });
-      thumbnailsContainer.appendChild(thumbnail);
-    });
-
-    // Inicializar cantidad y precio
-    quantityInput.value = 1;
-    updateTotalPrice();
-
-    // Mostrar modal
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-
-    // Configurar eventos
-    setupEnhancedModalEvents(product, modal);
-  }
-
-  function setupEnhancedModalEvents(product, modal) {
-    const quantityInput = document.getElementById('product-quantity');
-    const decreaseBtn = document.getElementById('decrease-quantity');
-    const increaseBtn = document.getElementById('increase-quantity');
-    const buyBtn = document.getElementById('buy-btn-enhanced');
-    const shareBtn = document.getElementById('share-product-btn');
-    const whatsappBtn = document.getElementById('whatsapp-btn-enhanced');
-    const closeBtn = document.getElementById('close-modal-btn-enhanced');
-    const modalClose = document.querySelector('.product-modal-close');
-
-    // Cantidad
-    function updateTotalPrice() {
-      const quantity = parseInt(quantityInput.value) || 1;
-      const total = product.price * quantity;
-      document.getElementById('total-price').textContent = `$${total.toLocaleString()}`;
-    }
-
-    decreaseBtn.addEventListener('click', () => {
-      const current = parseInt(quantityInput.value) || 1;
-      if (current > 1) {
-        quantityInput.value = current - 1;
-        updateTotalPrice();
-      }
-    });
-
-    increaseBtn.addEventListener('click', () => {
-      const current = parseInt(quantityInput.value) || 1;
-      quantityInput.value = current + 1;
-      updateTotalPrice();
-    });
-
-    quantityInput.addEventListener('input', updateTotalPrice);
-
-    // Comprar
-    buyBtn.addEventListener('click', () => {
-      const quantity = parseInt(quantityInput.value) || 1;
-      const total = product.price * quantity;
-      alert(`Compra iniciada:\n\nProducto: ${product.name}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nSerás redirigido al proceso de pago.`);
-      // Aquí iría la integración con el sistema de pago
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-
-    // Compartir
-    shareBtn.addEventListener('click', () => {
-      const productUrl = `${window.location.origin}${window.location.pathname}?product=${product.id}`;
-      const shareText = `Mira este producto: ${product.name} - $${product.price.toLocaleString()}\n${productUrl}`;
-      
-      // Copiar al portapapeles
-      navigator.clipboard.writeText(shareText).then(() => {
-        // Mostrar modal de éxito
-        document.getElementById('shareSuccessModal').style.display = 'flex';
-      }).catch(err => {
-        console.error('Error al copiar: ', err);
-        // Fallback: Abrir ventana de compartir
-        window.open(`mailto:?subject=${encodeURIComponent(product.name)}&body=${encodeURIComponent(shareText)}`, '_blank');
-      });
-    });
-
-    // WhatsApp
-    whatsappBtn.addEventListener('click', () => {
-      const quantity = parseInt(quantityInput.value) || 1;
-      const total = product.price * quantity;
-      const message = `Hola, estoy interesado en el producto:\n\n*${product.name}*\n\nPrecio: $${product.price.toLocaleString()}\nCantidad: ${quantity}\nTotal: $${total.toLocaleString()}\n\nPor favor envíenme más información.`;
-      const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/573102583224?text=${encodedMessage}`, '_blank');
-    });
-
-    // Cerrar
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-
-    modalClose.addEventListener('click', () => {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-
-    // Cerrar al hacer clic fuera
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  /* ===== INICIALIZACIÓN DEL SISTEMA ===== */
-  document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar sistema existente
-    initEcommerce(); // Función existente del slide 5
-    initRotatingBanner(); // Función existente
-    initImageZoom(); // Función existente
-    
-    // Inicializar nueva sección de productos
-    initAllProductsSection();
-    
-    // Inicializar slider
-    showSlide(0);
-    
-    // Configurar modal de éxito para compartir
-    document.getElementById('share-success-close').addEventListener('click', function() {
-      document.getElementById('shareSuccessModal').style.display = 'none';
-    });
-    
-    // Cerrar modal de éxito al hacer clic fuera
-    document.getElementById('shareSuccessModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.style.display = 'none';
-      }
-    });
-  });
 
   /* ===== FUNCIONES EXISTENTES DEL SISTEMA ORIGINAL ===== */
   // Variable para productos del slide 5 (existente)
